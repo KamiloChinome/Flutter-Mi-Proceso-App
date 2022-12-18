@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:miprocesoapp/values/info.dart';
 
 const String poppinsB = 'PoppinsB';//fontsize 18
@@ -65,6 +64,12 @@ const String phone = 'Telefono';
 const String process = 'Procesos suscritos';
 const String identification = 'Identificacion';
 const String userIdentification = 'Identificacion de usuario';
+
+//PROCESS DETAILS TEXTS
+const String actuationName = 'Nombre de la actuación';
+const String actuationDescription = 'Descripción de la actuacion';
+const String date = '10/12/2022';
+const String actuations = 'Actuaciones';
 
 
 

@@ -41,7 +41,9 @@ class AlarmCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 18,),
-                    const Icon(Icons.arrow_forward_ios_outlined, size: 30, color: opcion1,)
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, 'ProcessDetails'),
+                      child: const Icon(Icons.arrow_forward_ios_outlined, size: 30, color: opcion1,))
                   ],
                 ),
               )

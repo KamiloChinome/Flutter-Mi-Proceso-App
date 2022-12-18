@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miprocesoapp/screens/process_screen.dart';
 import 'package:miprocesoapp/values/texts.dart';
 import 'package:miprocesoapp/widgets/alarm_card.dart';
 import 'package:miprocesoapp/widgets/process_card.dart';
@@ -104,6 +105,25 @@ const List<Color> color = [
   Colors.black,
   Colors.red,
   Colors.green,
+];
+
+const List<Widget> actuationsList = <Widget>[
+  ProcessDetaillCard(),
+  ProcessDetaillCard(),
+  ProcessDetaillCard(),
+  ProcessDetaillCard(),
+  ProcessDetaillCard(),
+  ProcessDetaillCard(),
+  ProcessDetaillCard(),
+  ProcessDetaillCard(),
+  ProcessDetaillCard(),
+  ProcessDetaillCard(),
+  ProcessDetaillCard(),
+  ProcessDetaillCard(),
+  ProcessDetaillCard(),
+  ProcessDetaillCard(),
+  ProcessDetaillCard(),
+  
 ];
 
 
