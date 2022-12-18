@@ -5,7 +5,7 @@ import 'package:miprocesoapp/screens/alarm_screen.dart';
 import 'package:miprocesoapp/screens/home_screen.dart';
 import 'package:miprocesoapp/screens/personal_information.dart';
 import 'package:miprocesoapp/screens/plans_screen.dart';
-import 'package:miprocesoapp/screens/user_profile.dart';
+import 'package:miprocesoapp/screens/acount_screen.dart';
 import 'package:miprocesoapp/values/texts.dart';
 
 void main(){
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      initialRoute: 'PersonalInformation',
+      initialRoute: 'HomeScreen',
       routes: {
         'HomeScreen':(context) => const HomeScreen(),
         'AddProcessScreen':(context) => const AddProcessScreen(),

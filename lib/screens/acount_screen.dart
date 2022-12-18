@@ -46,11 +46,11 @@ class UserProfileScreen extends StatelessWidget {
             child: const Center(child: Text(actualPlan, style: TextStyle(color: Colors.white, fontSize: 25),)),
           ),
           
-          const _ProfileFormatContainer(icon: Icons.person, text: 'Informacion Personal',),
-          const _ProfileFormatContainer(icon: Icons.settings, text: 'Ajustes',),
-          const _ProfileFormatContainer(icon: Icons.support_agent_outlined, text: 'Ayuda y Soporte',),
-          const _ProfileFormatContainer(icon: Icons.person_add, text: 'Invitar a un amigo',),
-          const _ProfileFormatContainer(icon: Icons.logout, text: 'Cerrar sesión',),
+          _ProfileFormatContainer(icon: Icons.person, text: 'Informacion Personal', onTap: () => Navigator.pushNamed(context, 'PersonalInformation'),),
+          _ProfileFormatContainer(icon: Icons.settings, text: 'Ajustes', onTap: () {  },),
+          _ProfileFormatContainer(icon: Icons.support_agent_outlined, text: 'Ayuda y Soporte', onTap: () {  },),
+          _ProfileFormatContainer(icon: Icons.person_add, text: 'Invitar a un amigo', onTap: () {  },),
+          _ProfileFormatContainer(icon: Icons.logout, text: 'Cerrar sesión', onTap: () {  },),
           
         ],
       )
@@ -62,34 +62,38 @@ class _ProfileFormatContainer extends StatelessWidget {
 
   final IconData icon;
   final String text;
+  final Function()? onTap;
   const _ProfileFormatContainer({
-    Key? key, required this.icon, required this.text,
+    Key? key, required this.icon, required this.text, required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 15, right: 15),
-      margin: const EdgeInsets.only(top: 30),
-      height: 70, width: 350,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 10,
-            offset: Offset(4, 4)
-          )
-        ],
-        color: Colors.grey[200],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Icon(icon, size: 30, color: opcion2,),
-          Text(text, style: const TextStyle(fontSize: 17),),
-          const Icon(Icons.arrow_forward_ios_outlined, size: 30, color: opcion1,)
-        ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.only(left: 15, right: 15),
+        margin: const EdgeInsets.only(top: 30),
+        height: 70, width: 350,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 10,
+              offset: Offset(4, 4)
+            )
+          ],
+          color: Colors.grey[200],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(icon, size: 30, color: opcion2,),
+            Text(text, style: const TextStyle(fontSize: 17),),
+            const Icon(Icons.arrow_forward_ios_outlined, size: 30, color: opcion1,)
+          ],
+        ),
       ),
     );
   }

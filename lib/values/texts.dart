@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:miprocesoapp/values/info.dart';
 
 const String poppinsB = 'PoppinsB';//fontsize 18
 const String poppinsR = 'PoppinsR';
@@ -6,11 +7,9 @@ const String poppinsL = 'PoppinsL';
 
 
 
-
-
-const String userName = 'User Name';
+const String userName = 'Nombre del usuario';
 const String actualPlan = 'Plan actual';
-const String userEmail = 'usermail@gmail.com';
+const String userEmail = 'usuario@email.com';
 const String selectcityLabel = 'Seleccione una ciudad';
 const String selectcityHint = 'Ciudad';
 const String processId = '110013867541589765432876';
@@ -30,7 +29,7 @@ const String deliveryLabelText = 'Digite su número de despacho';
 const String yearHintText = 'Año';
 const String yearLabelText = 'Digite el año';
 
-const String fileNumberHintText = 'Nuemero de radicado';
+const String fileNumberHintText = 'Número de radicado';
 const String fileNumberLabelText = 'Digite su número de radicado';
 
 const String consecutiveNumberHintText = 'Nuemero de consecutivo';
@@ -38,7 +37,7 @@ const String consecutiveNumberLabelText = 'Digite su número de consecutivo';
 
 //TEXTOS DEL DRAWER
 const String search = 'Buscar';
-const String profile = 'Mi perfil';
+const String profile = 'Mi cuenta';
 const String alarm = 'Alarmas';
 const String plans = 'Planes';
 const String exit = 'Salir';
@@ -53,8 +52,21 @@ const String button = 'LO QUIERO';
 const String termsAndConditions = 'Se aplican terminos y condiciones';
 
 //searchdelegatetexts
-
 const String searchInProcess = "Buscar procesos";
+
+//PERSONAL INFORMATION STRINGS
+const String personalInformation = "Información personal";
+const String captureImage = "Captura o selecciona tu imagen de perfil";
+const String fullName = 'Nombre completo';
+const String userPhone = 'Telefono del usuario';
+int suscribedProcesses = allItems.length;
+const String email = 'Email';
+const String phone = 'Telefono';
+const String process = 'Procesos suscritos';
+const String identification = 'Identificacion';
+const String userIdentification = 'Identificacion de usuario';
+
+
 
 
 
