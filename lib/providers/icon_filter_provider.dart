@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-class IconFilterModel with ChangeNotifier{
+class IconFilterprovider with ChangeNotifier{
   IconData _selectedIcon = Icons.star;
 
   IconData get selectedIcon => _selectedIcon;

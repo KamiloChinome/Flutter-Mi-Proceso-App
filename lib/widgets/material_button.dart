@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/models/button_model.dart';
+import 'package:miprocesoapp/providers/button_provider.dart';
 import 'package:provider/provider.dart';
 class Button extends StatelessWidget {
 
@@ -28,10 +28,10 @@ class Button extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: (currentIndex != Provider.of<ButtonModel>(context).selectedButton ) ? Colors.grey : color,
-            size: (currentIndex != Provider.of<ButtonModel>(context).selectedButton ) ? 29 : 30,
+            color: (currentIndex != Provider.of<ButtonProvider>(context).selectedButton ) ? Colors.grey : color,
+            size: (currentIndex != Provider.of<ButtonProvider>(context).selectedButton ) ? 29 : 30,
           ),
-          (currentIndex != Provider.of<ButtonModel>(context).selectedButton ) ? const SizedBox() : Text(text) 
+          (currentIndex != Provider.of<ButtonProvider>(context).selectedButton ) ? const SizedBox() : Text(text) 
         ],
       ),
     );

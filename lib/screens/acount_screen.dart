@@ -13,7 +13,7 @@ class UserProfileScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(height: sizeHeight * 0.08,),
+          SizedBox(height: sizeHeight * 0.06,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -23,10 +23,10 @@ class UserProfileScreen extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 child: const Icon(Icons.arrow_back_ios_new_outlined, size: 30, )),
-              const CircleAvatar(
+              CircleAvatar(
                 backgroundColor: marca1,
-                radius: 70,
-                child: Icon(Icons.person, size: 100, color: marca2,),
+                radius: sizeHeight * 0.08,
+                child: const Icon(Icons.person, size: 100, color: marca2,),
               ),
               const Icon(Icons.sunny, size: 30, color: marca1,),
               const SizedBox(width: 1,),
@@ -69,12 +69,14 @@ class _ProfileFormatContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double sizeHeight = MediaQuery.of(context).size.height;
+    double sizeWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.only(left: 15, right: 15),
         margin: const EdgeInsets.only(top: 30),
-        height: 70, width: 350,
+        height: sizeHeight * 0.08, width: sizeWidth * 0.85,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
           boxShadow: const [
@@ -91,7 +93,7 @@ class _ProfileFormatContainer extends StatelessWidget {
           children: [
             Icon(icon, size: 30, color: opcion2,),
             Text(text, style: const TextStyle(fontSize: 17),),
-            const Icon(Icons.arrow_forward_ios_outlined, size: 30, color: opcion1,)
+            const Icon(Icons.arrow_forward_ios_outlined, size: 30, color: marca1,)
           ],
         ),
       ),

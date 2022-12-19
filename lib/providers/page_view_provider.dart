@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PageViewModel extends ChangeNotifier{
+class PageViewProvider extends ChangeNotifier{
   int _page= 2;
 
   int get page => _page;

@@ -1,8 +1,8 @@
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/models/button_model.dart';
-import 'package:miprocesoapp/models/page_view_model.dart';
+import 'package:miprocesoapp/providers/button_provider.dart';
+import 'package:miprocesoapp/providers/page_view_provider.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/info.dart';
 import 'package:miprocesoapp/values/texts.dart';
@@ -21,8 +21,8 @@ class HomeScreen extends StatelessWidget {
     double sizeWidth = MediaQuery.of(context).size.width;
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ButtonModel(),),
-        ChangeNotifierProvider(create: (context) => PageViewModel(),),
+        ChangeNotifierProvider(create: (context) => ButtonProvider(),),
+        ChangeNotifierProvider(create: (context) => PageViewProvider(),),
       ],
       child: _Scaffold(controller: controller, sizeHeight: sizeHeight, sizeWidth: sizeWidth),
     );
@@ -143,7 +143,7 @@ class _Drawer extends StatelessWidget {
             indent: 30,
             thickness: 1.3,
           ),
-          SizedBox(height: sizeHeight* 0.3,),
+          SizedBox(height: sizeHeight* 0.25,),
           ListTile(
               leading: const Icon(Icons.support_agent_rounded, color: iconColor,),
               title: const Text(suport, style: TextStyle(fontSize: 17),),
@@ -188,8 +188,8 @@ class _BottomNavigationHome extends StatelessWidget {
                   color: opcion1,
                   currentIndex: 0,
                   onPressed: () {
-                    Provider.of<ButtonModel>(context, listen: false).selectedButton = 0;
-                    Provider.of<PageViewModel>(context, listen: false).page = 0;
+                    Provider.of<ButtonProvider>(context, listen: false).selectedButton = 0;
+                    Provider.of<PageViewProvider>(context, listen: false).page = 0;
                     controller.jumpToPage(0);
                   },
                   text: 'Todos',
@@ -200,8 +200,8 @@ class _BottomNavigationHome extends StatelessWidget {
                   color: verde,
                   currentIndex: 1,
                   onPressed: () {
-                    Provider.of<ButtonModel>(context, listen: false).selectedButton = 1;
-                    Provider.of<PageViewModel>(context, listen: false).page = 1;
+                    Provider.of<ButtonProvider>(context, listen: false).selectedButton = 1;
+                    Provider.of<PageViewProvider>(context, listen: false).page = 1;
                     controller.jumpToPage(1);
                     // controller.animateToPage(1, duration: const Duration(milliseconds: 550), curve: Curves.easeInQuart);
                   },
@@ -218,8 +218,8 @@ class _BottomNavigationHome extends StatelessWidget {
                   color: Colors.red,
                   currentIndex: 2,
                   onPressed: () {
-                    Provider.of<ButtonModel>(context, listen: false).selectedButton = 2;
-                    Provider.of<PageViewModel>(context, listen: false).page = 2;
+                    Provider.of<ButtonProvider>(context, listen: false).selectedButton = 2;
+                    Provider.of<PageViewProvider>(context, listen: false).page = 2;
                     // controller.animateToPage(3, duration: const Duration(milliseconds: 550), curve: Curves.easeInQuart);
                     controller.jumpToPage(2);
                   },
@@ -231,8 +231,8 @@ class _BottomNavigationHome extends StatelessWidget {
                   color: opcion1,
                   currentIndex: 3,
                   onPressed: () {
-                    Provider.of<ButtonModel>(context, listen: false).selectedButton = 3;
-                    Provider.of<PageViewModel>(context, listen: false).page = 3;
+                    Provider.of<ButtonProvider>(context, listen: false).selectedButton = 3;
+                    Provider.of<PageViewProvider>(context, listen: false).page = 3;
                     // controller.animateToPage(4, duration: const Duration(milliseconds: 550), curve: Curves.easeInQuart);
                     controller.jumpToPage(3);
                   },
@@ -264,7 +264,7 @@ class _Slides extends StatelessWidget {
         
         controller: controller,
         onPageChanged: (i) {
-          Provider.of<ButtonModel>(context, listen: false).selectedButton = i;
+          Provider.of<ButtonProvider>(context, listen: false).selectedButton = i;
           i=2;
         },
         physics:  const BouncingScrollPhysics(),

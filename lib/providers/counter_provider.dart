@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-class CounterModel with ChangeNotifier{
+class CounterProvider with ChangeNotifier{
   String _counterLenght = '0';
 
   String get counterLenght => _counterLenght;

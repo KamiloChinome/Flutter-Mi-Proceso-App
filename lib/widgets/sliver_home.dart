@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/models/icon_filter_model.dart';
+import 'package:miprocesoapp/providers/icon_filter_provider.dart';
 import 'package:miprocesoapp/search/search_delegate.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/texts.dart';
@@ -25,7 +25,7 @@ class SliverHome extends StatelessWidget {
     double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWidth = MediaQuery.of(context).size.width;
     return ChangeNotifierProvider(
-      create: (context) => IconFilterModel(),
+      create: (context) => IconFilterprovider(),
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: <Widget>[
@@ -73,14 +73,14 @@ class _SelectedIconFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    IconData selectedicon = Provider.of<IconFilterModel>(context).selectedIcon;
+    IconData selectedicon = Provider.of<IconFilterprovider>(context).selectedIcon;
     return IconButton(
       icon: Icon(selectedicon, size: 30,),
       onPressed: (){
         if(selectedicon == Icons.star){
-          Provider.of<IconFilterModel>(context, listen: false).selectedIcon = Icons.access_time;
+          Provider.of<IconFilterprovider>(context, listen: false).selectedIcon = Icons. calendar_month_outlined;
         }else{
-          Provider.of<IconFilterModel>(context, listen: false).selectedIcon = Icons.star;
+          Provider.of<IconFilterprovider>(context, listen: false).selectedIcon = Icons.star;
         }
       },
     );

@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/models/counter_model.dart';
+import 'package:miprocesoapp/providers/counter_provider.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/texts.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +28,7 @@ class TextFormFieldFormat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => CounterModel(),
+      create: (_) => CounterProvider(),
       child: _TextField(sizeWidth: sizeWidth, maxLength: maxLength, inputType: inputType, hintText: hintText, labelText: labelText, icon: icon,),
     );
   }
@@ -57,7 +57,7 @@ class _TextField extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: sizeWidth * 0.06),
       child: TextFormField(
         onChanged: (value) {
-          Provider.of<CounterModel>(context, listen: false).counterLenght = value.length.toString();
+          Provider.of<CounterProvider>(context, listen: false).counterLenght = value.length.toString();
         },
         maxLength: maxLength,
         keyboardType: inputType,
@@ -77,7 +77,7 @@ class _TextField extends StatelessWidget {
           hintStyle: const TextStyle(fontFamily: poppinsL),
           labelText: labelText,
           prefixIcon: Icon(icon, color: marca1, size: 30,),
-          counterText: '${Provider.of<CounterModel>(context).counterLenght}/$maxLength',
+          counterText: '${Provider.of<CounterProvider>(context).counterLenght}/$maxLength',
         ),
       ),
     );

@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/models/plan_view_model.dart';
+import 'package:miprocesoapp/providers/plan_view_provider.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/info.dart';
 import 'package:miprocesoapp/values/texts.dart';
@@ -16,7 +16,7 @@ class PlansScreen extends StatelessWidget {
     double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWidth = MediaQuery.of(context).size.width;
     return ChangeNotifierProvider(
-      create: (context) => PlansIndexModel(),
+      create: (context) => PlansIndexProvider(),
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(  sizeHeight * 0.07),
@@ -29,7 +29,7 @@ class PlansScreen extends StatelessWidget {
             children: const [
               Expanded(child: PageViewWidget()),
               Padding(
-                padding: EdgeInsets.only(bottom: 30, top: 10),
+                padding: EdgeInsets.only(bottom: 20, top: 9),
                 child: _Dots(),
               )
             ],
@@ -70,7 +70,7 @@ class _Dot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageView = Provider.of<PlansIndexModel>(context).currentPage;
+    final pageView = Provider.of<PlansIndexProvider>(context).currentPage;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 5000),
       child: Container(
@@ -112,7 +112,7 @@ class PageViewWidgetState extends State<PageViewWidget> {
       viewportFraction: viewportFraction)
         ..addListener(() {
           setState(() {
-            Provider.of<PlansIndexModel>(context, listen: false).currentPage = pageController.page!;
+            Provider.of<PlansIndexProvider>(context, listen: false).currentPage = pageController.page!;
             pageOffset = pageController.page;
             
           }
@@ -146,11 +146,11 @@ class PageViewWidgetState extends State<PageViewWidget> {
           right: 10,
           left: 10,
           top: 100 - scale * 40,
-          bottom: 100 - scale * 30,
+          bottom: 100 - scale * 40,
           ),
           
         width: sizeWidth * 0.9,
-        height: sizeHeight * 0.85,
+        height: sizeHeight * 1,
         decoration:  BoxDecoration(
           color: Colors.white,
           boxShadow: (const [
@@ -190,7 +190,6 @@ class _ColumnPlanCard extends StatelessWidget {
       children: [
         const SizedBox(height: 15,),
         Text(plan, style: const TextStyle(fontSize: 28),),
-        const SizedBox(height: 15,),
         const Text('$yearPriceForMonth/mes', style: TextStyle(fontSize: 27)),
         const Text(savingForYear, style: TextStyle(fontSize: 18)),
         const Text(normalPrice, style: TextStyle(fontSize: 16, color: Colors.black38, fontFamily: poppinsL)),
@@ -199,8 +198,9 @@ class _ColumnPlanCard extends StatelessWidget {
           thickness: 1.3,
           endIndent: 30,
           indent: 30,
+          height: 20,
         ),
-        const SizedBox(height: 25,),
+
         _BulletPoint(name: nameAllServices[0],),
         const SizedBox(height: 10,),
         _BulletPoint(name: nameAllServices[1]),
@@ -244,7 +244,7 @@ class _BulletPoint extends StatelessWidget {
       children: [
         const Padding(
           padding: EdgeInsets.only(right: 8, left: 23),
-          child: Icon(Icons.check, size: 30, color: opcion1, ),
+          child: Icon(Icons.check, size: 30, color: opcion2, ),
         ),
         name
       ],

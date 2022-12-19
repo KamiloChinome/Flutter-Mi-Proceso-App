@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PlansIndexModel with ChangeNotifier{
+class PlansIndexProvider with ChangeNotifier{
 
   double _currentPage = 0;
   int _index = 0;

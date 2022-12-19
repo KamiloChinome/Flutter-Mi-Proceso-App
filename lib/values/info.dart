@@ -123,7 +123,4 @@ const List<Widget> actuationsList = <Widget>[
   ProcessDetaillCard(),
   ProcessDetaillCard(),
   ProcessDetaillCard(),
-  
 ];
-
-

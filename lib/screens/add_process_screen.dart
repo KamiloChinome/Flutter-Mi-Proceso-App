@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/models/button_model.dart';
+import 'package:miprocesoapp/providers/button_provider.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/texts.dart';
 import 'package:miprocesoapp/widgets/add_process_text_formfield.dart';
@@ -16,7 +16,7 @@ class AddProcessScreen extends StatelessWidget {
     double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWidth = MediaQuery.of(context).size.width;
     return ChangeNotifierProvider(
-      create: (context) => ButtonModel(),
+      create: (context) => ButtonProvider(),
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(sizeHeight*0.1),
@@ -128,7 +128,7 @@ class _AppBar extends StatelessWidget {
       backgroundColor: appBarbackgroundColor,
       leading:  GestureDetector(
         onTap: () {
-          Provider.of<ButtonModel>(context, listen: false).selectedButton = 0;
+          Provider.of<ButtonProvider>(context, listen: false).selectedButton = 0;
           Navigator.pop(context);
         },
         child: const Icon(Icons.arrow_back_ios_new_outlined, size: 30,)

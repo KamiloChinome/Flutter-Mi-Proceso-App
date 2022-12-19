@@ -30,21 +30,22 @@ class PersonalInformationScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: sizeWidth * 0.04, right: sizeWidth * 0.07),
-                  child: const CircleAvatar(
+                  child: CircleAvatar(
                     backgroundColor: marca1,
-                    radius: 57,
-                    child: Icon(Icons.person, size: 87, color: marca2,),
+                    radius: sizeHeight * 0.06,
+                    child: Icon(Icons.person, size: sizeHeight * 0.08, color: marca2,),
                   ),
                 ),
                 const Expanded(child: Text(captureImage, style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: poppinsL), maxLines: 2, overflow: TextOverflow.ellipsis,)),
               ],
             ),
             Stack(
-              children: [Container(
+              children: [
+                Container(
                 padding: const EdgeInsets.all(35),
                 margin: EdgeInsets.only(left: sizeWidth * 0.04, right: sizeWidth * 0.04, top: sizeHeight * 0.025),
                 width: double.infinity,
-                height: sizeHeight * 0.62,
+                height: sizeHeight * 0.65,
                 decoration: BoxDecoration(
                   color: blanco,
                   borderRadius: BorderRadius.circular(35),
@@ -59,7 +60,7 @@ class PersonalInformationScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: sizeHeight * 0.02,),
+                    SizedBox(height: sizeHeight * 0.01,),
                     const Text(fullName, style: TextStyle(color: marca1, fontSize: 18, fontFamily: poppinsB),),
                     SizedBox(height: sizeHeight * 0.01,),
                     const Text(userName, style: TextStyle(fontSize: 17),),

@@ -10,7 +10,7 @@
 // Esto permite que se controle el acceso a la propiedad y se valide el valor que se asigna a ella.
 import 'package:flutter/material.dart';
 
-class ButtonModel with ChangeNotifier{
+class ButtonProvider with ChangeNotifier{
   int _selectedButton = 0;
 
   int get selectedButton => _selectedButton;

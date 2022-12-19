@@ -28,7 +28,7 @@ class ProcessItem extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
             margin: const EdgeInsets.symmetric(horizontal: 10),
-            height: sizeHeight * 0.15,
+            height: sizeHeight * 0.165,
             decoration:  const BoxDecoration(
               boxShadow: [
               ]
@@ -37,16 +37,21 @@ class ProcessItem extends StatelessWidget {
               children:[
                 Column(
                   children: [
-                    Text(processId, style: const TextStyle(fontSize: 18, fontFamily: poppinsB),),
-                    Expanded(
-                          child: Row(
-                            children: [
-                              const Icon(Icons.place_outlined,size: 28, color: iconColor,),
-                              const SizedBox(width: 10),
-                              Text(processUbication,style: const TextStyle(fontSize: 17, fontFamily: poppinsR ), overflow: TextOverflow.ellipsis, )
-                            ],
-                          ),
-                        ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(processId, style: const TextStyle(fontSize: 18, fontFamily: poppinsB),),
+                        //TODO: CONDICIONAR SI EL PROCESO ES FAVORITO
+                        const Icon(Icons.star, color: estrella),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Icon(Icons.place_outlined,size: 28, color: iconColor,),
+                        const SizedBox(width: 10),
+                        Text(processUbication,style: const TextStyle(fontSize: 17, fontFamily: poppinsR ), overflow: TextOverflow.ellipsis, )
+                      ],
+                    ),
                     Row(
                       children:  [
                         Expanded(
@@ -58,7 +63,9 @@ class ProcessItem extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const Icon(Icons.star, color: estrella,),
+                        //TODO: CONDICIONAR ICONO SI TIENE ACTUACIONES NUEVAS O NO
+                        const Icon(Icons.circle, color: opcion1, size: 15, ),
+                        SizedBox(width: sizeWidth * 0.01,)
                       ],
                     ),
                     Row(
@@ -86,6 +93,7 @@ class ProcessItem extends StatelessWidget {
           indent: 30,
           endIndent: 30,
           thickness: 1.3,
+          height: 1,
         )
       ]
     );
