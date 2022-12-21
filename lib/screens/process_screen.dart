@@ -14,14 +14,35 @@ class ProcessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => SubscribeProcessModel(),
-      child: const Scaffold(
-        body: _Sliver(),
-        endDrawer: _LeftMenuDrawer(),
+      child: Scaffold(
+        body: Row(
+          children: const [
+            _LeftMenuDrawer(),
+            _Scaffold()
+          ],
+        ),
+        // drawer: _,
       ),
     );
   }
 }
 
+class _Scaffold extends StatelessWidget {
+  const _Scaffold({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double sizeHeight = MediaQuery.of(context).size.height;
+    double sizeWidth = MediaQuery.of(context).size.width;
+    return SizedBox(
+      height: sizeHeight * 1,
+      width: sizeWidth * 0.85,
+      child: const _Sliver(),
+    );
+  }
+}
 
 class _LeftMenuDrawer extends StatelessWidget {
   const _LeftMenuDrawer({
@@ -34,11 +55,15 @@ class _LeftMenuDrawer extends StatelessWidget {
     IconData favorite = Provider.of<SubscribeProcessModel>(context).favorite;
     double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWidth = MediaQuery.of(context).size.width;
-    return Drawer(
-      width: sizeWidth * 0.16,
+    return Container(
+      height: sizeHeight * 1,
+      width: sizeWidth * 0.15,
+      color: marca1,
       child: Column(
         children: [
-          SizedBox(height: sizeHeight * 0.15,),
+          SizedBox(height: sizeHeight * 0.07,),
+          _LeftMenuOption(icon: Icons.arrow_back_ios_new_outlined, onTap: () => Navigator.pop(context),),
+          SizedBox(height: sizeHeight * 0.1,),
           _LeftMenuOption(icon: addIcon, onTap: () { 
             if(addIcon == Icons.playlist_add){
                   Provider.of<SubscribeProcessModel>(context, listen: false).addIcon = Icons.playlist_add_check;
@@ -86,7 +111,7 @@ class _LeftMenuOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Icon(icon, size: 30, color: marca1,)
+      child: Icon(icon, size: 30, color: blanco,)
     );
   }
 }
@@ -103,13 +128,8 @@ class _Sliver extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
-            actions: [
-              IconButton(onPressed: () => Scaffold.of(context).openEndDrawer(), icon: const Icon(Icons.menu))
-            ],
             floating: true,
-            leading: GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: const Icon(Icons.arrow_back_ios_new_outlined)),
+            automaticallyImplyLeading: false,
             backgroundColor: marca1,
             centerTitle: true,
             expandedHeight: sizeHeight*0.07,
