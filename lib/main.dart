@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       
       title: 'Material App',
-      initialRoute: 'HomeScreen',
+      initialRoute: 'ProcessDetails',
       routes: {
         'HomeScreen':(context) => const HomeScreen(),
         'AddProcessScreen':(context) => const AddProcessScreen(),
