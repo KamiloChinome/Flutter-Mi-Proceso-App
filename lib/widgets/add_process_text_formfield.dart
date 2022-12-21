@@ -14,6 +14,7 @@ class TextFormFieldFormat extends StatelessWidget {
   final double sizeWidth;
   final TextInputType inputType;
   final IconData icon;
+  final IconData? suffixIcon;
 
 
   const TextFormFieldFormat({
@@ -22,14 +23,18 @@ class TextFormFieldFormat extends StatelessWidget {
     required this.hintText,
     required this.labelText,
     required this.counterText,
-    this.inputType = TextInputType.number, required this.icon,
+    this.inputType = TextInputType.number, required this.icon, required this.suffixIcon,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => CounterProvider(),
-      child: _TextField(sizeWidth: sizeWidth, maxLength: maxLength, inputType: inputType, hintText: hintText, labelText: labelText, icon: icon,),
+      child: _TextField(
+        sizeWidth: sizeWidth,
+        maxLength: maxLength,
+        inputType: inputType,
+        hintText: hintText, labelText: labelText, icon: icon, suffixIcon: suffixIcon,),
     );
   }
 }
@@ -41,7 +46,9 @@ class _TextField extends StatelessWidget {
     required this.maxLength,
     required this.inputType,
     required this.hintText,
-    required this.labelText, required this.icon,
+    required this.labelText,
+    required this.icon, 
+    required this.suffixIcon,
   }) : super(key: key);
 
   final double sizeWidth;
@@ -50,18 +57,25 @@ class _TextField extends StatelessWidget {
   final String hintText;
   final String labelText;
   final IconData icon;
+  final IconData? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: sizeWidth * 0.06),
       child: TextFormField(
+        
         onChanged: (value) {
           Provider.of<CounterProvider>(context, listen: false).counterLenght = value.length.toString();
         },
         maxLength: maxLength,
         keyboardType: inputType,
         decoration: InputDecoration(
+          suffixIcon: GestureDetector(
+            onTap: (){
+              //TODO: CONDICIONAR COLOR DEL BOTON Y LLEVAR AL PROCESO DESEADO
+            },
+            child: Icon(suffixIcon, size: 30,)),
           enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
               color: marca1

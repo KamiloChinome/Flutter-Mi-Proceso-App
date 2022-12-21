@@ -143,7 +143,6 @@ class _Drawer extends StatelessWidget {
             indent: 30,
             thickness: 1.3,
           ),
-          SizedBox(height: sizeHeight* 0.25,),
           ListTile(
               leading: const Icon(Icons.support_agent_rounded, color: iconColor,),
               title: const Text(suport, style: TextStyle(fontSize: 17),),

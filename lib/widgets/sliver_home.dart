@@ -16,8 +16,6 @@ class SliverHome extends StatelessWidget {
     super.key,
     required this.screeninfo, required this.infoList,
   });
-
-
   @override
   Widget build(BuildContext context) {
     //quita el teclado
@@ -36,6 +34,7 @@ class SliverHome extends StatelessWidget {
             children:  [
             Column(
               children: [
+                const SizedBox(height: 5,),
                 const Text(userName, style: TextStyle(fontFamily: poppinsR),),
                 Text(screeninfo, style: const TextStyle(fontFamily: poppinsR),),
               ],

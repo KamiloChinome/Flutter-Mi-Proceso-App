@@ -15,8 +15,10 @@ const String processId = '110013867541589765432876';
 const String processUbication = 'Lugar';
 const String demanding = 'Demandante';
 const String defendant = 'Demandado';
+
+//ADD_PROCESS_SCREEN TEXTS
 const String addProcess = 'Agregar procesos';
-const String addProcessInstruction = 'Numero completo';
+const String addProcessInstruction = '¿Como desea agregar su proceso?';
 const String addProcessInstruction2 = 'Construir número';
 
 const String addProcesshinText = 'Número de proceso';

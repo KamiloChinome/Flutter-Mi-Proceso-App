@@ -40,7 +40,7 @@ class ProcessItem extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(processId, style: const TextStyle(fontSize: 18, fontFamily: poppinsB),),
+                        Text(processId, style: const TextStyle(fontSize: 17.5, fontFamily: poppinsB),),
                         //TODO: CONDICIONAR SI EL PROCESO ES FAVORITO
                         const Icon(Icons.star, color: estrella),
                       ],

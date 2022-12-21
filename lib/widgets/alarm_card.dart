@@ -19,7 +19,7 @@ class AlarmCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                height: sizeHeight * 0.08,
+                height: sizeHeight * 0.085,
                 width: sizeWidth * 0.9,
                 child: Row(
                   children:  [
@@ -31,13 +31,18 @@ class AlarmCard extends StatelessWidget {
                       endIndent: 10,
                     ),
                     const SizedBox(width: 10,),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(processId, style: TextStyle(fontFamily: poppinsB, fontSize: 17),),
-                          Text('Notas', style: TextStyle(fontFamily: poppinsL, fontSize: 18),overflow: TextOverflow.ellipsis,),
-                        ],
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, 'ProcessDetails'),
+                      child: Container(
+                        child: Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text(processId, style: TextStyle(fontFamily: poppinsB, fontSize: 17),),
+                              Text('Notas', style: TextStyle(fontFamily: poppinsL, fontSize: 18),overflow: TextOverflow.ellipsis,),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(width: 18,),

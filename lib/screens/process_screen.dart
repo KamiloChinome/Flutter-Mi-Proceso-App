@@ -128,6 +128,7 @@ class _Sliver extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
+            floating: true,
             automaticallyImplyLeading: false,
             backgroundColor: marca1,
             centerTitle: true,
