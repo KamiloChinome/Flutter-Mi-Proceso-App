@@ -124,3 +124,22 @@ const List<Widget> actuationsList = <Widget>[
   ProcessDetaillCard(),
   ProcessDetaillCard(),
 ];
+
+final alarmProceeding = [
+  const AlarmCard(),
+  const AlarmCard(),
+  const AlarmCard(),
+  const AlarmCard(),
+  const AlarmCard(),
+  const AlarmCard(),
+  const AlarmCard(),
+  const AlarmCard(),
+  const AlarmCard(),
+  const AlarmCard(),
+  const AlarmCard(),
+  const AlarmCard(),
+  const AlarmCard(),
+  const AlarmCard(),
+  const AlarmCard(),
+];
+

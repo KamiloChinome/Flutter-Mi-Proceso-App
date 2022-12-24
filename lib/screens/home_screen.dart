@@ -78,8 +78,6 @@ class _Drawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double sizeHeight = MediaQuery.of(context).size.height;
-    double sizeWidth = MediaQuery.of(context).size.width;
     return Drawer(
       child: ListView(
         children: [

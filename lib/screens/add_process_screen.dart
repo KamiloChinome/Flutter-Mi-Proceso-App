@@ -58,7 +58,7 @@ class _AddProcessFormat extends StatelessWidget {
         SizedBox(height: sizeHeight * 0.03,),
         const Text(addProcessInstruction, style: TextStyle(fontSize: 19, fontFamily: poppinsB),),
         SizedBox(height: sizeHeight * 0.014,),
-        _Swich(isVisible: isVisible),
+        _Swich(isVisible: isVisible, sizeHeight: sizeHeight, sizeWidth: sizeWidth,),
         SizedBox(height: sizeHeight * 0.014,),
         Column(
           children: [
@@ -149,14 +149,16 @@ class _AddProcessFormat extends StatelessWidget {
 class _Swich extends StatelessWidget {
 
   final bool isVisible;
+  final double sizeHeight;
+  final double sizeWidth;
   _Swich({
-    Key? key, required this.isVisible,
+    Key? key, required this.isVisible, required this.sizeHeight, required this.sizeWidth,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return LiteRollingSwitch(
-      width: 193,
+      width: sizeWidth * 0.51,
       textOff: 'Numero completo',
       textOn: 'Construir numero',
       iconOff: Icons.numbers,

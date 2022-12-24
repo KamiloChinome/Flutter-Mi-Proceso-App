@@ -38,7 +38,7 @@ class AlarmCard extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [
-                              Text(processId, style: TextStyle(fontFamily: poppinsB, fontSize: 17),),
+                              Text(processId, style: TextStyle(fontFamily: poppinsB, fontSize: 16.5),),
                               Text('Notas', style: TextStyle(fontFamily: poppinsL, fontSize: 18),overflow: TextOverflow.ellipsis,),
                             ],
                           ),

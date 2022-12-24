@@ -6,7 +6,10 @@ import 'package:miprocesoapp/screens/home_screen.dart';
 import 'package:miprocesoapp/screens/personal_information.dart';
 import 'package:miprocesoapp/screens/plans_screen.dart';
 import 'package:miprocesoapp/screens/acount_screen.dart';
+import 'package:miprocesoapp/screens/process_document.dart';
+import 'package:miprocesoapp/screens/proceedings_information.dart';
 import 'package:miprocesoapp/screens/process_screen.dart';
+import 'package:miprocesoapp/screens/settings_screen.dart';
 import 'package:miprocesoapp/values/texts.dart';
 
 void main(){
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       
       title: 'Material App',
-      initialRoute: 'ProcessDetails',
+      initialRoute: 'HomeScreen',
       routes: {
         'HomeScreen':(context) => const HomeScreen(),
         'AddProcessScreen':(context) => const AddProcessScreen(),
@@ -35,6 +38,9 @@ class MyApp extends StatelessWidget {
         'PlansScreen':(context) => const PlansScreen(),
         'PersonalInformation':(context) => const PersonalInformationScreen(),
         'ProcessDetails':(context) => const ProcessScreen(),
+        'proceedingsInformation':(context) => const ProceedingsInformationScreen(),
+        'processDocument':(context) => const ProcessDocumentScreen(),
+        'settings':(context) => const SettingsScreen(),
       },
       theme: ThemeData(
         fontFamily: poppinsR

@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
-class SubscribeProcessModel with ChangeNotifier{
+
+// Provides a way to update the icon displayed for adding and favoriting a subscription.
+class SubscribeProcessModel with ChangeNotifier {
   IconData _addIcon = Icons.playlist_add;
   IconData _favorite = Icons.star_border_outlined;
 
   IconData get addIcon => _addIcon;
-  set addIcon(IconData i){
+  // When the icon is updated, notifyListeners is called
+  // to trigger a rebuild of any widgets that depend on this class.
+  set addIcon(IconData i) {
     _addIcon = i;
     notifyListeners();
   }
+
   IconData get favorite => _favorite;
-  set favorite(IconData i){
+  // When the icon is updated, notifyListeners is called
+  // to trigger a rebuild of any widgets that depend on this class.
+  set favorite(IconData i) {
     _favorite = i;
     notifyListeners();
   }

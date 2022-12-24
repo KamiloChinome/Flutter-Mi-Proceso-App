@@ -3,7 +3,6 @@ import 'package:miprocesoapp/providers/subscribe_process_provider.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/info.dart';
 import 'package:miprocesoapp/values/texts.dart';
-import 'package:miprocesoapp/widgets/global_icon_button.dart';
 import 'package:provider/provider.dart';
 
 class ProcessScreen extends StatelessWidget {
@@ -61,7 +60,7 @@ class _LeftMenuDrawer extends StatelessWidget {
           SizedBox(height: sizeHeight * 0.1,),
           _LeftMenuOption(icon: Icons.add, onTap: () {  },),
           SizedBox(height: sizeHeight * 0.1,),
-          _LeftMenuOption(icon: Icons.attach_file_outlined, onTap: () {  },),
+          _LeftMenuOption(icon: Icons.attach_file_outlined, onTap: () => Navigator.pushNamed(context, 'processDocument'),),
           SizedBox(height: sizeHeight * 0.1,),
           _LeftMenuOption(icon: Icons.info, onTap: () {  },),
           SizedBox(height: sizeHeight * 0.1,),
@@ -139,50 +138,53 @@ class ProcessDetaillCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWidth = MediaQuery.of(context).size.width;
-    return Container(
-      padding: const EdgeInsets.all(9),
-      margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
-      height: sizeHeight * 0.12,
-      width: sizeWidth * 0.92,
-      decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(10)
-      ),
-      child: Stack(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(actuationName, style: TextStyle(color: marca1, fontSize: 18, fontFamily: poppinsB),),
-                    Padding(
-                      padding: EdgeInsets.only(right: 20),
-                      child: Text(actuationDescription, style: TextStyle( fontSize: 17),maxLines: 2,overflow: TextOverflow.ellipsis,),
-                    ),
-                  ],
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, 'proceedingsInformation'),
+      child: Container(
+        padding: const EdgeInsets.all(9),
+        margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
+        height: sizeHeight * 0.12,
+        width: sizeWidth * 0.92,
+        decoration: BoxDecoration(
+          color: Colors.grey[300],
+          borderRadius: BorderRadius.circular(10)
+        ),
+        child: Stack(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(actuationName, style: TextStyle(color: marca1, fontSize: 18, fontFamily: poppinsB),),
+                      Padding(
+                        padding: EdgeInsets.only(right: 20),
+                        child: Text(actuationDescription, style: TextStyle( fontSize: 17),maxLines: 2,overflow: TextOverflow.ellipsis,),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: sizeHeight * 0.0325),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Row(
-                      children: const [
-                        Icon(Icons.attach_file),
-                        Icon(Icons.access_alarm_outlined)
-                      ],
-                    ),
-                    const SizedBox(height: 4,),
-                    const Text(date),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ],
+                Padding(
+                  padding: EdgeInsets.only(top: sizeHeight * 0.0325),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Row(
+                        children: const [
+                          Icon(Icons.attach_file),
+                          Icon(Icons.access_alarm_outlined)
+                        ],
+                      ),
+                      const SizedBox(height: 4,),
+                      const Text(date),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

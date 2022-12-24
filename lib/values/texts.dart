@@ -73,6 +73,15 @@ const String actuationDescription = 'Descripción de la actuacion';
 const String date = '10/12/2022';
 const String actuations = 'Actuaciones';
 
+//PROCESS DOCUMENTS TEXTS
+const String  documentName= 'Nombre del documento';
+const String  documents= 'Documentos';
+
+//LOREM IPSUM
+const String loremIpsum = 'Eiusmod eu cupidatat aute officia labore laborum sintullamco laboris velit voluptate dolor eiusmod. Veniam exaliquip est cillum consequat anim ad cupidatat sit anim reprehenderit in eiusmod et. Irure amet dolor esse fugiat';
+const String loremIpsumNotas = 'Anim reprehenderit in eiusmod et. Irure amet dolor esse fugiat';
+        
+
 
 
 
