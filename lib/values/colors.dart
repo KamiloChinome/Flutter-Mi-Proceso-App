@@ -8,8 +8,8 @@ const Color blanco  = Color.fromRGBO(255, 255, 255, 1);
 const Color opcion1 = Color.fromRGBO(3, 136, 166, 1);
 const Color opcion2 = Color.fromRGBO(119, 154, 181, 1);
 const Color verde   = Color.fromRGBO(78, 170, 3, 1);
-const Color verdeLitigio   = Color.fromRGBO(87, 233, 141, 1);
-const Color estrella   = Color.fromRGBO(222, 191, 88, 1);
+const Color verde2   = Color.fromRGBO(87, 233, 141, 1);
+const Color favoritos   = Color.fromRGBO(222, 191, 88, 1);
 
 
 const Color iconColor = opcion2;

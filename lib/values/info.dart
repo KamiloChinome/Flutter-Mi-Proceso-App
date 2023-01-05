@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miprocesoapp/screens/process_screen.dart';
 import 'package:miprocesoapp/values/texts.dart';
-import 'package:miprocesoapp/widgets/alarm_card.dart';
 import 'package:miprocesoapp/widgets/process_card.dart';
 
 final citys = <String>[
@@ -58,23 +57,6 @@ final updateItems = [
   const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
   const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
 ];
-final alarms = [
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-];
 
 const List<Widget> nameAllServices = <Widget>[
   Expanded(child: Padding(
@@ -125,21 +107,4 @@ const List<Widget> actuationsList = <Widget>[
   ProcessDetaillCard(),
 ];
 
-final alarmProceeding = [
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-  const AlarmCard(),
-];
 

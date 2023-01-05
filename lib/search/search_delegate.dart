@@ -36,13 +36,13 @@ class ProcessSearchDelegate extends SearchDelegate{
 
   @override
   Widget buildResults(BuildContext context) {
-    return Text('');
+    return const Text('');
     // return const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,);;
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return Text('');
+    return const Text('');
     // return const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,);
   }
 

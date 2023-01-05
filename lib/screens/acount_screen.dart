@@ -41,16 +41,16 @@ class UserProfileScreen extends StatelessWidget {
             width: sizeWidth * 0.5,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
-              color: verdeLitigio
+              color: verde2
             ),
             child: const Center(child: Text(actualPlan, style: TextStyle(color: Colors.white, fontSize: 25),)),
           ),
           
-          _ProfileFormatContainer(icon: Icons.person, text: 'Informacion Personal', onTap: () => Navigator.pushNamed(context, 'PersonalInformation'),),
-          _ProfileFormatContainer(icon: Icons.settings, text: 'Ajustes', onTap: () {  },),
-          _ProfileFormatContainer(icon: Icons.support_agent_outlined, text: 'Ayuda y Soporte', onTap: () {  },),
-          _ProfileFormatContainer(icon: Icons.person_add, text: 'Invitar a un amigo', onTap: () {  },),
-          _ProfileFormatContainer(icon: Icons.logout, text: 'Cerrar sesión', onTap: () {  },),
+          _ProfileFormatContainer(icon: Icons.person, text: personalInformation, onTap: () => Navigator.pushNamed(context, 'PersonalInformation'),),
+          _ProfileFormatContainer(icon: Icons.settings, text: settings, onTap: () {  },),
+          _ProfileFormatContainer(icon: Icons.support_agent_outlined, text: suport, onTap: () {  },),
+          _ProfileFormatContainer(icon: Icons.person_add, text: inviteAFriend, onTap: () {  },),
+          _ProfileFormatContainer(icon: Icons.logout, text: logOut, onTap: () {  },),
           
         ],
       )

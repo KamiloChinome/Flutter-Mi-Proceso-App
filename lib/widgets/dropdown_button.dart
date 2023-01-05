@@ -9,7 +9,6 @@ class AddProcessDropDownButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: sizeWidth * 0.06),

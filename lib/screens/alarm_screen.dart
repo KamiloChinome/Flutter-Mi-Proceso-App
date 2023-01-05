@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/values/colors.dart';
-import 'package:miprocesoapp/values/info.dart';
+import 'package:miprocesoapp/models/alarms_model.dart';
 import 'package:miprocesoapp/values/texts.dart';
+import 'package:miprocesoapp/widgets/alarm_card.dart';
+import 'package:miprocesoapp/global_widgets/global_icon_button.dart';
+import 'package:miprocesoapp/global_widgets/global_sliver_app_bar.dart';
 
 class AlarmScreen extends StatelessWidget {
   
@@ -9,39 +11,31 @@ class AlarmScreen extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    double sizeHeight = MediaQuery.of(context).size.height;
-    double sizeWidth = MediaQuery.of(context).size.width;
     return  Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(sizeHeight*0.08),
-        child: const _AppBar()),
-        // body: _AlarmFormat(sizeHeight: sizeHeight, sizeWidth: sizeWidth),
-        body: ListView(
+        body: CustomScrollView(
           physics: const BouncingScrollPhysics(),
-          children: alarms,
-        ),
-    );
-  }
-}
-
-
-class _AppBar extends StatelessWidget {
-  const _AppBar({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: marca1,
-      actions: [
-      IconButton(onPressed: () {}, icon: const Icon(Icons.settings, size: 30,))
-    ],
-      title: const Text(alarm),
-      centerTitle: true,
-      leading: GestureDetector(
-        onTap: () => Navigator.pop(context),
-        child: const Icon(Icons.arrow_back_ios_new_outlined, size: 30,)),
+          slivers: [
+            GlobalSliverAppbar(
+              screeninfo: alarms, 
+              titleText: userName, 
+              iconLeading: Icons.arrow_back_ios_new_outlined,
+              leadingOnPressed: () => Navigator.pop(context),
+              actions: [
+                GlobalIconButton(
+                  icon: Icons.settings, 
+                  iconSize: 30, 
+                  onPressed: (){} //TODO: LLEVAR A CONFIGUARACIONES
+                ),
+              ],
+            ),
+            SliverList(delegate: SliverChildBuilderDelegate(
+              childCount: 10,
+              (context, index) {
+                return AlarmCard(note: alarmsModel[index].note, title: alarmsModel[index].procesId,);
+              }
+            ))
+          ],
+        )
     );
   }
 }

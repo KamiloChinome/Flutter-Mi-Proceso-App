@@ -7,6 +7,7 @@ import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/texts.dart';
 import 'package:miprocesoapp/widgets/add_process_text_formfield.dart';
 import 'package:miprocesoapp/widgets/dropdown_button.dart';
+import 'package:miprocesoapp/global_widgets/global_outlined_button.dart';
 import 'package:provider/provider.dart';
 
 class AddProcessScreen extends StatelessWidget {
@@ -50,9 +51,7 @@ class _AddProcessFormat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     bool isVisible = Provider.of<AddProcessSwichProvider>(context).swich;
-
     return Column(
       children: [
         SizedBox(height: sizeHeight * 0.03,),
@@ -123,19 +122,9 @@ class _AddProcessFormat extends StatelessWidget {
                   maxLength: 2,
                   icon: Icons.content_paste_search_outlined, suffixIcon: null,
                 ),
-                OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                elevation: 10,
-                  // padding: EdgeInsets.all(),
-                  minimumSize: const Size(120, 50),
-                  backgroundColor: verdeLitigio,
-                  shape: const StadiumBorder()
-                ),
-                child: const Text(search, style: TextStyle(color: marca1, fontSize: 18),),
-                onPressed: (){
-                  //TODO Buscar proceso
-                },
-              )
+                GlobalOutlinedButton(text: search, onPressed: () { 
+                  //TODO: BUSCAR PROCESO
+                },),
               ],
             ),
           ),
@@ -151,7 +140,7 @@ class _Swich extends StatelessWidget {
   final bool isVisible;
   final double sizeHeight;
   final double sizeWidth;
-  _Swich({
+  const _Swich({
     Key? key, required this.isVisible, required this.sizeHeight, required this.sizeWidth,
   }) : super(key: key);
 
@@ -159,11 +148,11 @@ class _Swich extends StatelessWidget {
   Widget build(BuildContext context) {
     return LiteRollingSwitch(
       width: sizeWidth * 0.51,
-      textOff: 'Numero completo',
-      textOn: 'Construir numero',
+      textOff: fullNumber,
+      textOn: addProcessInstruction2,
       iconOff: Icons.numbers,
       iconOn: Icons.build,
-      colorOn: verdeLitigio,
+      colorOn: verde2,
       colorOff: opcion2,
       value: false,
       onTap: (){}, 

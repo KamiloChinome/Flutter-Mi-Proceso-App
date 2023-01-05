@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:miprocesoapp/models/documents_proceedings.dart';
-import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/texts.dart';
 import 'package:miprocesoapp/widgets/alarm_card.dart';
 import 'package:miprocesoapp/widgets/document_card.dart';
-import 'package:miprocesoapp/widgets/global_icon_button.dart';
+import 'package:miprocesoapp/global_widgets/global_icon_button.dart';
+import 'package:miprocesoapp/global_widgets/global_sliver_app_bar.dart';
 
 class ProceedingsInformationScreen extends StatelessWidget {
   
@@ -12,44 +12,28 @@ class ProceedingsInformationScreen extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    double sizeHeight = MediaQuery.of(context).size.height;
-    double sizeWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
-        SliverAppBar(
-          centerTitle: true,
-          backgroundColor: marca1,
-          expandedHeight: sizeHeight * 0.1,
-          floating: true,
+        GlobalSliverAppbar(
+          screeninfo: documents, 
+          titleText: processId, 
+          iconLeading:Icons.arrow_back_ios_new_outlined,
+          leadingOnPressed: () => Navigator.pop(context),
           actions: [
             GlobalIconButton(icon: Icons.add, iconSize: 30, onPressed: (){
               //TODO: añadir documento general o asociar con actuacion
             })
           ],
-          leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_outlined, size: 32,),
-          onPressed: () => Navigator.pop(context)
-          ),
-          title: Stack(
-          children:  [
-          Column(
-            children: const [
-              SizedBox(height: 5,),
-              Text(processId, style: TextStyle(fontFamily: poppinsR, fontSize: 18),),
-              Text(documents, style: TextStyle(fontFamily: poppinsR),),
-            ],
-          )
-        ]),
         ),
         SliverList(delegate: SliverChildListDelegate([
           Padding(
-            padding: EdgeInsets.only(top: 10, left: 20, right: 20),
+            padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
-                Text('Descripción:', style: TextStyle(fontSize: 19, fontFamily: poppinsB),),
+                Text(description, style: TextStyle(fontSize: 19, fontFamily: poppinsB),),
                 Text(loremIpsum, //TODO: DESCRIPCION DE LA ACTUACION
                 style: TextStyle(fontSize: 16),
                 ),
@@ -61,15 +45,15 @@ class ProceedingsInformationScreen extends StatelessWidget {
             child: RichText(text: const TextSpan(
               style: TextStyle(fontSize: 17, fontFamily: poppinsB, color: Colors.black),
               children: [
-                TextSpan(text: 'Inicio del término:     '),
+                TextSpan(text: '$startOfTerm     '),
                 TextSpan(text: date, style: TextStyle(fontFamily: poppinsL)),
-                TextSpan(text: '\nFin del término:     '),
+                TextSpan(text: '\n$endOfTerm     '),
                 TextSpan(text: date, style: TextStyle(fontFamily: poppinsL)),
                 TextSpan(text: '\n'),
-                TextSpan(text: '\nNotas:', style: TextStyle(fontSize: 19)),
+                TextSpan(text: '\n$note:', style: TextStyle(fontSize: 19)),
                 TextSpan(text: '\n$loremIpsumNotas', style: TextStyle(fontFamily: poppinsR)),
                 TextSpan(text: '\n'),
-                TextSpan(text: '\nDocumentos:', style: TextStyle(fontSize: 19)),
+                TextSpan(text: '\n$documents:', style: TextStyle(fontSize: 19)),
               ]
             )),
           )
@@ -88,13 +72,14 @@ class ProceedingsInformationScreen extends StatelessWidget {
           )
         ),
         SliverList(delegate: SliverChildListDelegate([
-          const Text('Alarmas:', style: TextStyle(fontSize: 19, fontFamily: poppinsB),),
-          const AlarmCard(),
+          const Padding(
+            padding: EdgeInsets.only(top: 15, left: 20, right: 20),
+            child: Text('$alarms:', style: TextStyle(fontSize: 19, fontFamily: poppinsB),),
+          ),
+          const AlarmCard(note: note, title: processId,),
         ]))
       ]
     )
     );
   }
 }
-
-//TODO: AGREGAR TEXTOS A VALUES, PERSONALIZAR aLARMcARD

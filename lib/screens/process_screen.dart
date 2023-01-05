@@ -3,6 +3,11 @@ import 'package:miprocesoapp/providers/subscribe_process_provider.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/info.dart';
 import 'package:miprocesoapp/values/texts.dart';
+import 'package:miprocesoapp/global_widgets/global_alert_dialog.dart';
+import 'package:miprocesoapp/global_widgets/global_icon_button.dart';
+import 'package:miprocesoapp/global_widgets/global_outlined_button.dart';
+import 'package:miprocesoapp/global_widgets/global_sliver_app_bar.dart';
+import 'package:miprocesoapp/global_widgets/global_text_form_field.dart';
 import 'package:provider/provider.dart';
 
 class ProcessScreen extends StatelessWidget {
@@ -14,6 +19,7 @@ class ProcessScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => SubscribeProcessModel(),
       child: const Scaffold(
+        
         body: _Sliver(),
         endDrawer: _LeftMenuDrawer(),
       ),
@@ -41,28 +47,101 @@ class _LeftMenuDrawer extends StatelessWidget {
           _LeftMenuOption(icon: addIcon, onTap: () { 
             if(addIcon == Icons.playlist_add){
                   Provider.of<SubscribeProcessModel>(context, listen: false).addIcon = Icons.playlist_add_check;
+                  return showDialog(
+                    context: context, 
+                    builder: (context) => GlobalAlertDialog(
+                      title: '¿Suscribirse al proceso?',
+                      actions: null, 
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            TextButton(onPressed: (){
+                              Navigator.pop(context);
+                              //TODO: SUSCRIBIRSE AL PROCESO
+                            }, child: const Text('Confirmar', style: TextStyle(fontSize: 17, color: azulrey),),),
+                            TextButton(onPressed: (){
+                              Navigator.pop(context);
+                            }, child: const Text('Cancelar', style: TextStyle(fontSize: 17, color: azulrey),),),
+                        ])
+                      ], 
+                    )
+                  );
                 }else{
                   Provider.of<SubscribeProcessModel>(context, listen: false).addIcon = Icons.playlist_add;
                   Provider.of<SubscribeProcessModel>(context, listen: false).favorite = Icons.star_border_outlined;
+                  return showDialog(
+                    context: context, 
+                    builder: (context) => GlobalAlertDialog(
+                      title: '¿Eliminar el proceso?',
+                      actions: null, 
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            TextButton(onPressed: (){
+                              Navigator.pop(context);
+                              //TODO: SUSCRIBIRSE AL PROCESO
+                            }, child: const Text('Confirmar', style: TextStyle(fontSize: 17, color: azulrey),),),
+                            TextButton(onPressed: (){
+                              Navigator.pop(context);
+                            }, child: const Text('Cancelar', style: TextStyle(fontSize: 17, color: azulrey),),),
+                        ])
+                      ], 
+                    )
+                  );
                 }
                 //TODO: añador a suscritos
               },),
           SizedBox(height: sizeHeight * 0.1,),
-          _LeftMenuOption(icon: favorite, onTap: () { 
+          _LeftMenuOption(icon: favorite, onTap: () {
+            
+            //SNACKBARS
+            const favoriteSnackBar = SnackBar(
+              duration: Duration(milliseconds: 800),
+              backgroundColor: verde2,
+              content: Text('Se agrego a favoritos', style: TextStyle(color: marca1, fontSize: 20),),
+            );
+            const deleteSnackBar = SnackBar(
+              duration: Duration(milliseconds: 800),
+              backgroundColor: marca1,
+              content: Text('Se elimino de favoritos', style: TextStyle(color: blanco, fontSize: 20),),
+            );
+
+            Scaffold.of(context).closeEndDrawer();
             if(favorite == Icons.star_border_outlined){
               Provider.of<SubscribeProcessModel>(context, listen: false).favorite = Icons.star;
               Provider.of<SubscribeProcessModel>(context, listen: false).addIcon = Icons.playlist_add_check;
+              ScaffoldMessenger.of(context).showSnackBar(favoriteSnackBar);
             }else{
               Provider.of<SubscribeProcessModel>(context, listen: false).favorite = Icons.star_border_outlined;
+              ScaffoldMessenger.of(context).showSnackBar(deleteSnackBar);
             }
             //TODO: añador a favoritos
           }),
           SizedBox(height: sizeHeight * 0.1,),
-          _LeftMenuOption(icon: Icons.add, onTap: () {  },),
+          _LeftMenuOption(icon: Icons.add, onTap: () { 
+            Scaffold.of(context).closeEndDrawer();
+            return showDialog(
+              barrierDismissible: true,
+              context: context, 
+              builder: (context) => GlobalAlertDialog(
+                title: proceedingRegist,
+              children: [
+                const GlobalTextFormField(hintText: '1/2/2023', labelText: 'fecha', prefixIcon: Icons.calendar_month,),
+                const GlobalTextFormField(hintText: 'Titulo', labelText: 'Actuacion', prefixIcon: Icons.announcement_rounded,),
+                const GlobalTextFormField(hintText: 'Descripcion de la actuacion', labelText: 'Descripcion', prefixIcon: Icons.note, maxLines: 2,),
+                SizedBox(height: sizeHeight * 0.04,),
+                GlobalOutlinedButton(text: 'Agregar', onPressed: (){
+                  //TODO: AGREGAR ACTUACION
+                })
+              ],)
+            );
+          },),
           SizedBox(height: sizeHeight * 0.1,),
           _LeftMenuOption(icon: Icons.attach_file_outlined, onTap: () => Navigator.pushNamed(context, 'processDocument'),),
           SizedBox(height: sizeHeight * 0.1,),
-          _LeftMenuOption(icon: Icons.info, onTap: () {  },),
+          _LeftMenuOption(icon: Icons.info, onTap: () => Navigator.pushNamed(context, 'ProcessInformation'),),
           SizedBox(height: sizeHeight * 0.1,),
           _LeftMenuOption(icon: Icons.share, onTap: () {  },),
         ],
@@ -92,36 +171,21 @@ class _LeftMenuOption extends StatelessWidget {
 
 
 class _Sliver extends StatelessWidget {
-  const _Sliver({super.key});
+  const _Sliver();
 
   @override
   Widget build(BuildContext context) {
-    double sizeHeight = MediaQuery.of(context).size.height;
-    double sizeWidth = MediaQuery.of(context).size.width;
     return CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: <Widget>[
-          SliverAppBar(
+          GlobalSliverAppbar(
+            screeninfo: actuations, 
+            titleText: processId, 
+            iconLeading: Icons.arrow_back_ios_new_outlined,
+            leadingOnPressed: () => Navigator.pop(context),
             actions: [
-              IconButton(onPressed: () => Scaffold.of(context).openEndDrawer(), icon: const Icon(Icons.menu))
+              GlobalIconButton(icon: Icons.menu, iconSize: 30, onPressed: () => Scaffold.of(context).openEndDrawer())
             ],
-            floating: true,
-            leading: GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: const Icon(Icons.arrow_back_ios_new_outlined)),
-            backgroundColor: marca1,
-            centerTitle: true,
-            expandedHeight: sizeHeight*0.07,
-            title: Stack(
-            children:  [
-            Column(
-              children: const [
-                Text(actuations, style: TextStyle(fontFamily: poppinsR),),
-                Text(processId, style: TextStyle(fontFamily: poppinsR, fontSize: 18),),
-              ],
-            )
-          ],
-        ),
           ),
           SliverList(delegate: SliverChildListDelegate(actuationsList) )
         ],
@@ -189,3 +253,5 @@ class ProcessDetaillCard extends StatelessWidget {
     );
   }
 }
+
+//TODO: TEXTOS

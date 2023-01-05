@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/texts.dart';
@@ -23,7 +22,7 @@ class ProcessItem extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: (() {
-            Navigator.pushNamed(context, 'ProcessDetails');
+            Navigator.pushNamed(context, 'ProcessProceedings');
           }),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
@@ -42,7 +41,7 @@ class ProcessItem extends StatelessWidget {
                       children: [
                         Text(processId, style: const TextStyle(fontSize: 17.5, fontFamily: poppinsB),),
                         //TODO: CONDICIONAR SI EL PROCESO ES FAVORITO
-                        const Icon(Icons.star, color: estrella),
+                        const Icon(Icons.star, color: favoritos),
                       ],
                     ),
                     Row(

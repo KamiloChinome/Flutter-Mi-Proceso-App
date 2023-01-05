@@ -4,6 +4,7 @@ import 'package:miprocesoapp/providers/plan_view_provider.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/info.dart';
 import 'package:miprocesoapp/values/texts.dart';
+import 'package:miprocesoapp/global_widgets/global_outlined_button.dart';
 import 'package:provider/provider.dart';
 
 
@@ -190,7 +191,7 @@ class _ColumnPlanCard extends StatelessWidget {
       children: [
         const SizedBox(height: 15,),
         Text(plan, style: const TextStyle(fontSize: 28),),
-        const Text('$yearPriceForMonth/mes', style: TextStyle(fontSize: 27)),
+        const Text('$yearPriceForMonth/$month', style: TextStyle(fontSize: 27)),
         const Text(savingForYear, style: TextStyle(fontSize: 18)),
         const Text(normalPrice, style: TextStyle(fontSize: 16, color: Colors.black38, fontFamily: poppinsL)),
         const Divider(
@@ -214,18 +215,11 @@ class _ColumnPlanCard extends StatelessWidget {
             height: 35,
             ),
         ),
-        Container(
-          height: sizeHeight * 0.05,
-          width: sizeWidth * 0.5,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            color: verdeLitigio
-          ),
-          child: const Center(child: Text(button, style: TextStyle(color: Colors.white, fontSize: 25),)),
-        ),
-        const SizedBox(height: 15,),
+        GlobalOutlinedButton(text: button, onPressed:() { 
+          //TODO: PAGAR PLAN
+          }),
+        const SizedBox(height: 9,),
         const Text(termsAndConditions, style: TextStyle(fontSize: 13, fontFamily: poppinsL, decoration: TextDecoration.underline) ,)
-
       ],
     );
   }

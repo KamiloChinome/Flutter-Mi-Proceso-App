@@ -1,19 +1,21 @@
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:miprocesoapp/providers/button_provider.dart';
+import 'package:miprocesoapp/providers/icon_filter_provider.dart';
 import 'package:miprocesoapp/providers/page_view_provider.dart';
+import 'package:miprocesoapp/search/search_delegate.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/info.dart';
 import 'package:miprocesoapp/values/texts.dart';
-import 'package:miprocesoapp/widgets/sliver_home.dart';
+import 'package:miprocesoapp/global_widgets/global_icon_button.dart';
 import 'package:miprocesoapp/widgets/material_button.dart';
+import 'package:miprocesoapp/widgets/process_card.dart';
+import 'package:miprocesoapp/global_widgets/global_sliver_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  
   const HomeScreen({Key? key}) : super(key: key);
-  
   @override
   Widget build(BuildContext context) {
     final controller = PageController(initialPage: 0, keepPage: true);
@@ -45,9 +47,10 @@ class _Scaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const _Drawer(),
-      body: _Slides(controller: controller,),
-      floatingActionButton: FadeInDown(
+      body: Scaffold(
+        drawer: const _Drawer(),
+        body: _Slides(controller: controller,),
+        floatingActionButton: FadeInDown(
         from: 30,
         child: SizedBox(
           height: 70,
@@ -66,7 +69,7 @@ class _Scaffold extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: _BottomNavigationHome(sizeHeight: sizeHeight, sizeWidth: sizeWidth, controller: controller,),
-      
+      ),
     );
   }
 }
@@ -83,7 +86,7 @@ class _Drawer extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 21),
-            child: DrawerHeader(child: Image(image: AssetImage('assets/logodeslisable.png'), fit: BoxFit.cover,)
+            child: DrawerHeader(child: Image(image: AssetImage('assets/logos/logodeslisable.png'), fit: BoxFit.cover,)
             )
           ),
           ListTile(
@@ -95,7 +98,7 @@ class _Drawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.alarm, color: iconColor,),
-            title: const Text(alarm, style: TextStyle(fontSize: 17),),
+            title: const Text(alarms, style: TextStyle(fontSize: 17),),
             onTap: () {Navigator.pushNamed(context, 'AlarmScreen');},
           ),
           ListTile(
@@ -150,7 +153,7 @@ class _Drawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.arrow_back_ios_new_outlined, color: iconColor,),
             title: const Text(exit, style: TextStyle(fontSize: 17),),
-            onTap: () {},
+            onTap: () => SystemNavigator.pop()
           ),
         ],
       ),
@@ -189,7 +192,7 @@ class _BottomNavigationHome extends StatelessWidget {
                     Provider.of<PageViewProvider>(context, listen: false).page = 0;
                     controller.jumpToPage(0);
                   },
-                  text: 'Todos',
+                  text: allProcess,
                 ),
                 SizedBox(width: sizeWidth * 0.03),
                 Button(
@@ -202,7 +205,7 @@ class _BottomNavigationHome extends StatelessWidget {
                     controller.jumpToPage(1);
                     // controller.animateToPage(1, duration: const Duration(milliseconds: 550), curve: Curves.easeInQuart);
                   },
-                  text: 'Revisados',
+                  text: reviewed,
                 ),
                  SizedBox(width: sizeWidth * 0.05)
               ], 
@@ -220,7 +223,7 @@ class _BottomNavigationHome extends StatelessWidget {
                     // controller.animateToPage(3, duration: const Duration(milliseconds: 550), curve: Curves.easeInQuart);
                     controller.jumpToPage(2);
                   },
-                  text: 'Sin revisar',
+                  text: noChecked,
                 ),
                 SizedBox(width: sizeWidth * 0.02),
                 Button(
@@ -233,7 +236,7 @@ class _BottomNavigationHome extends StatelessWidget {
                     // controller.animateToPage(4, duration: const Duration(milliseconds: 550), curve: Curves.easeInQuart);
                     controller.jumpToPage(3);
                   },
-                  text: 'Nuevos',
+                  text: news,
                 ),
               ],
             ),
@@ -244,21 +247,14 @@ class _BottomNavigationHome extends StatelessWidget {
   }
 }
 
-
-
-
 class _Slides extends StatelessWidget {
   final PageController controller;
   const _Slides({ required this.controller});
 
   @override
   Widget build(BuildContext context) {
-
-    
-    
     return GestureDetector(
       child: PageView(
-        
         controller: controller,
         onPageChanged: (i) {
           Provider.of<ButtonProvider>(context, listen: false).selectedButton = i;
@@ -267,23 +263,89 @@ class _Slides extends StatelessWidget {
         physics:  const BouncingScrollPhysics(),
         children: [
           SliverHome(
-            screeninfo: 'Todos',
+            screeninfo: allProcess,
             infoList: allItems,
           ),
           SliverHome(
-            screeninfo: 'Revisados',
+            screeninfo: reviewed,
             infoList: checkItems,
           ),
           SliverHome(
-            screeninfo: 'No revisados',
+            screeninfo: noChecked,
             infoList: allItems,
           ),
           SliverHome(
-            screeninfo: 'Actualizados',
+            screeninfo: updated,
             infoList: updateItems,
           ),
         ],
       ),
+    );
+  }
+}
+
+class SliverHome extends StatelessWidget {
+  final String screeninfo;
+  final List<ProcessItem> infoList;
+  const SliverHome({
+    super.key,
+    required this.screeninfo, required this.infoList,
+  });
+  @override
+  Widget build(BuildContext context) {
+    //quita el teclado
+    FocusScope.of(context).unfocus();
+    return ChangeNotifierProvider(
+      create: (context) => IconFilterprovider(),
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: <Widget>[
+          GlobalSliverAppbar(
+            screeninfo: userName, 
+            titleText: screeninfo, 
+            iconLeading: Icons.menu,
+            leadingOnPressed: () => Scaffold.of(context).openDrawer(),
+            actions: [
+              const _SelectedIconFilter(),
+              GlobalIconButton(
+                icon: Icons.search, 
+                iconSize: 30, 
+                onPressed: () => showSearch(context: context, delegate: ProcessSearchDelegate()),
+              )
+            ],
+          ),
+          SliverList(delegate: SliverChildListDelegate(infoList))
+        ],
+      ),
+    );
+  }
+}
+
+class _SelectedIconFilter extends StatelessWidget {
+  const _SelectedIconFilter({Key? key,}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    IconData selectedicon = Provider.of<IconFilterprovider>(context).selectedIcon;
+    return IconButton(
+      icon: Icon(selectedicon, size: 30,),
+      onPressed: (){
+        final filterSnackbar = SnackBar(
+          duration: const Duration(milliseconds: 1000),
+          // padding: EdgeInsets.only(bottom: sizeHeight * 0.03, top: sizeHeight * 0.03),
+          backgroundColor: marca1,
+          content: Text((selectedicon == Icons.star) 
+          ? filterOne
+          : filterTwo, 
+          style: const TextStyle(color: blanco, fontSize: 20),textAlign: TextAlign.center,),
+        );
+        if(selectedicon == Icons.star){
+          ScaffoldMessenger.of(context).showSnackBar(filterSnackbar);
+          Provider.of<IconFilterprovider>(context, listen: false).selectedIcon = Icons. calendar_month_outlined;
+        }else{
+          ScaffoldMessenger.of(context).showSnackBar(filterSnackbar);
+          Provider.of<IconFilterprovider>(context, listen: false).selectedIcon = Icons.star;
+        }
+      },
     );
   }
 }
