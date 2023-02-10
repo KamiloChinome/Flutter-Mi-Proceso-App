@@ -1,9 +1,14 @@
 import 'package:miprocesoapp/values/info.dart';
 
+//FONTS
 const String poppinsB = 'PoppinsB';//fontsize 18
 const String poppinsR = 'PoppinsR';
 const String poppinsL = 'PoppinsL';
 
+//GENERAL
+const String confirm = 'Confirmar';
+const String cancel = 'Cancelar';
+const String title = 'Titulo';
 
 //LOGIN AND CREATE AN ACOUNT
 const String logIn = 'Iniciar Secion';
@@ -50,14 +55,14 @@ const String logOut = 'Cerrar sesión';
 //ADD_PROCESS_SCREEN TEXTS
 const String addProcessInstruction =      '¿Como desea agregar su proceso?';
 const String  fullNumber =                'Numero completo';
-const String consecutiveNumberLabelText = 'Digite su número de consecutivo';
-const String deliveryLabelText =          'Digite su número de despacho';
-const String fileNumberLabelText =        'Digite su número de radicado';
-const String addProcessLabelText =        'Digite su número de proceso';
+const String consecutiveNumberLabelText = 'Número de consecutivo';
+const String deliveryLabelText =          'Número de despacho';
+const String fileNumberLabelText =        'Número de radicado';
+const String addProcessLabelText =        'Número de proceso';
 const String consecutiveNumberHintText =  'Nuemero de consecutivo';
-const String deliveryHintText =           'Nuemero de despacho';
-const String fileNumberHintText =         'Número de radicado';
-const String addProcesshinText =          'Número de proceso';
+const String deliveryHintText =           'Despacho';
+const String fileNumberHintText =         'Radicado';
+const String addProcesshinText =          'Numero de Proceso';
 const String addProcess =                 'Agregar procesos';
 const String addProcessInstruction2 =     'Construir número';
 const String yearLabelText =              'Digite el año';
@@ -125,6 +130,12 @@ const String proceedingRegist  = 'Registrar una actuación';
 
 //LOGIN SCREEN
 const String createNewAcount  = 'Crear una nueva cuenta';
+
+//PROCESS SCREEN
+const String subscribeToProcess  = '¿Suscribirse al proceso?';
+const String deleteprocess  = '¿Eliminar el proceso?';
+const String addToFavorites  = 'Se agrego a favoritos';
+const String deleteToFavorites  = 'Se elimino de favoritos';
 
 
 

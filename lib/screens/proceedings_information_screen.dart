@@ -32,28 +32,28 @@ class ProceedingsInformationScreen extends StatelessWidget {
             padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(description, style: TextStyle(fontSize: 19, fontFamily: poppinsB),),
+              children: [
+                Text(description, style: Theme.of(context).textTheme.bodyLarge,),
                 Text(loremIpsum, //TODO: DESCRIPCION DE LA ACTUACION
-                style: TextStyle(fontSize: 16),
+                style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 15, left: 20, right: 20, bottom: 10),
-            child: RichText(text: const TextSpan(
-              style: TextStyle(fontSize: 17, fontFamily: poppinsB, color: Colors.black),
+            child: RichText(text: TextSpan(
+              style: const TextStyle(fontSize: 17, fontFamily: poppinsB, color: Colors.black),
               children: [
-                TextSpan(text: '$startOfTerm     '),
-                TextSpan(text: date, style: TextStyle(fontFamily: poppinsL)),
-                TextSpan(text: '\n$endOfTerm     '),
-                TextSpan(text: date, style: TextStyle(fontFamily: poppinsL)),
-                TextSpan(text: '\n'),
-                TextSpan(text: '\n$note:', style: TextStyle(fontSize: 19)),
-                TextSpan(text: '\n$loremIpsumNotas', style: TextStyle(fontFamily: poppinsR)),
-                TextSpan(text: '\n'),
-                TextSpan(text: '\n$documents:', style: TextStyle(fontSize: 19)),
+                TextSpan(text: '$startOfTerm    ', style: Theme.of(context).textTheme.bodyLarge),
+                TextSpan(text: date, style: Theme.of(context).textTheme.bodySmall),
+                TextSpan(text: '\n$endOfTerm     ', style: Theme.of(context).textTheme.bodyLarge),
+                TextSpan(text: date, style: Theme.of(context).textTheme.bodySmall),
+                const TextSpan(text: '\n'),
+                TextSpan(text: '\n$note:', style: Theme.of(context).textTheme.bodyLarge),
+                TextSpan(text: '\n$loremIpsumNotas', style: Theme.of(context).textTheme.bodyMedium),
+                const TextSpan(text: '\n'),
+                TextSpan(text: '\n$documents:', style: Theme.of(context).textTheme.bodyLarge),
               ]
             )),
           )

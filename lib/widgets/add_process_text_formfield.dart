@@ -1,9 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:miprocesoapp/providers/counter_provider.dart';
+import 'package:miprocesoapp/theme/theme_provider.dart';
+import 'package:miprocesoapp/theme/themes.dart';
 import 'package:miprocesoapp/values/colors.dart';
-import 'package:miprocesoapp/values/texts.dart';
 import 'package:provider/provider.dart';
 
 class TextFormFieldFormat extends StatelessWidget {
@@ -64,7 +63,8 @@ class _TextField extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: sizeWidth * 0.06),
       child: TextFormField(
-        
+        cursorColor: (Provider.of<ThemeProvider>(context).currentTheme == lightTheme) ? negro : blanco,
+        style: Theme.of(context).textTheme.labelSmall,
         onChanged: (value) {
           Provider.of<CounterProvider>(context, listen: false).counterLenght = value.length.toString();
         },
@@ -75,22 +75,10 @@ class _TextField extends StatelessWidget {
             onTap: (){
               //TODO: CONDICIONAR COLOR DEL BOTON Y LLEVAR AL PROCESO DESEADO
             },
-            child: Icon(suffixIcon, size: 30,)),
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: marca1
-            ),
-          ),
-          focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: azulrey,
-              width: 2.4
-            )
-          ),
+            child: Icon(suffixIcon)),
           hintText: hintText,
-          hintStyle: const TextStyle(fontFamily: poppinsL),
           labelText: labelText,
-          prefixIcon: Icon(icon, color: marca1, size: 30,),
+          prefixIcon: Icon(icon),
           counterText: '${Provider.of<CounterProvider>(context).counterLenght}/$maxLength',
         ),
       ),

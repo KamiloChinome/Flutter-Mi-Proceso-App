@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:miprocesoapp/providers/button_provider.dart';
 import 'package:provider/provider.dart';
-class Button extends StatelessWidget {
+class BottomNavigationBarButton extends StatelessWidget {
 
   final VoidCallback onPressed;
   final int currentIndex;
@@ -9,7 +9,7 @@ class Button extends StatelessWidget {
 
   final IconData icon;
   final Color color;
-  const Button({
+  const BottomNavigationBarButton({
     Key? key,
     required this.icon,
     required this.color,
@@ -20,18 +20,22 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      minWidth: 30,
-      onPressed: onPressed,
+    return GestureDetector(
+      onTap: onPressed,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
             icon,
             color: (currentIndex != Provider.of<ButtonProvider>(context).selectedButton ) ? Colors.grey : color,
-            size: (currentIndex != Provider.of<ButtonProvider>(context).selectedButton ) ? 29 : 30,
+            size: (currentIndex != Provider.of<ButtonProvider>(context).selectedButton ) ? 26 : 29,
           ),
-          (currentIndex != Provider.of<ButtonProvider>(context).selectedButton ) ? const SizedBox() : Text(text) 
+          Text(
+            text, 
+            style: TextStyle(
+              fontSize: 14, 
+              color: (currentIndex != Provider.of<ButtonProvider>(context).selectedButton ) ? Colors.grey : Theme.of(context).textTheme.titleLarge?.color,
+            ),
+          ) 
         ],
       ),
     );

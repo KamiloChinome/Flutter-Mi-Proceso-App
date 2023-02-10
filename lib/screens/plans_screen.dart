@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:miprocesoapp/providers/plan_view_provider.dart';
+import 'package:miprocesoapp/theme/theme_provider.dart';
+import 'package:miprocesoapp/theme/themes.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/info.dart';
 import 'package:miprocesoapp/values/texts.dart';
@@ -71,6 +73,8 @@ class _Dot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color disabledDot = (Provider.of<ThemeProvider>(context).currentTheme == lightTheme) ? opcion2 : marca2;
+    Color activatedDot = (Provider.of<ThemeProvider>(context).currentTheme == lightTheme) ? opcion1 : azul2;
     final pageView = Provider.of<PlansIndexProvider>(context).currentPage;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 5000),
@@ -80,7 +84,8 @@ class _Dot extends StatelessWidget {
         width: (pageView >= index - 0.5 && pageView < index + 0.5) ? 25 : 20,
         decoration: BoxDecoration(
           color: (pageView >= index - 0.5 && pageView < index + 0.5)
-          ? opcion1 : opcion2 ,
+          ? activatedDot
+          : disabledDot,
           borderRadius: BorderRadius.circular(100)
         ),
       ),
@@ -100,9 +105,7 @@ class PageViewWidget extends StatefulWidget {
 class PageViewWidgetState extends State<PageViewWidget> {
 
   late PageController pageController;
-
   double viewportFraction = 0.85;
-
   double? pageOffset = 0;
 
   @override
@@ -153,12 +156,12 @@ class PageViewWidgetState extends State<PageViewWidget> {
         width: sizeWidth * 0.9,
         height: sizeHeight * 1,
         decoration:  BoxDecoration(
-          color: Colors.white,
-          boxShadow: (const [
+          color: Theme.of(context).cardColor,
+          boxShadow: ( [
             BoxShadow(
-              color: Colors.black26,
+              color: Theme.of(context).shadowColor,
               blurRadius: 10,
-              offset: Offset(5,5)
+              offset: const Offset(5,5)
             ),
           ]
         ),
@@ -193,9 +196,8 @@ class _ColumnPlanCard extends StatelessWidget {
         Text(plan, style: const TextStyle(fontSize: 28),),
         const Text('$yearPriceForMonth/$month', style: TextStyle(fontSize: 27)),
         const Text(savingForYear, style: TextStyle(fontSize: 18)),
-        const Text(normalPrice, style: TextStyle(fontSize: 16, color: Colors.black38, fontFamily: poppinsL)),
+        const Text(normalPrice, style: TextStyle(fontSize: 16,  fontFamily: poppinsL)),
         const Divider(
-          color: marca1,
           thickness: 1.3,
           endIndent: 30,
           indent: 30,
@@ -215,7 +217,9 @@ class _ColumnPlanCard extends StatelessWidget {
             height: 35,
             ),
         ),
-        GlobalOutlinedButton(text: button, onPressed:() { 
+        GlobalOutlinedButton(
+          fontSize: 17,
+          text: button, onPressed:() { 
           //TODO: PAGAR PLAN
           }),
         const SizedBox(height: 9,),
@@ -238,7 +242,7 @@ class _BulletPoint extends StatelessWidget {
       children: [
         const Padding(
           padding: EdgeInsets.only(right: 8, left: 23),
-          child: Icon(Icons.check, size: 30, color: opcion2, ),
+          child: Icon(Icons.check),
         ),
         name
       ],
@@ -255,16 +259,14 @@ class _AppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: marca1,
       title: const Text(plans),
-      centerTitle: true,
       leading: GestureDetector(
         onTap: () => Navigator.pop(context),
-        child: const Icon(Icons.arrow_back_ios_new, size: 30,)
+        child: const Icon(Icons.arrow_back_ios_new)
       ),
       actions: [
         IconButton(
-          icon: const Icon(Icons.info, size: 30,),
+          icon: const Icon(Icons.info),
           onPressed: (){
             //TODO llevar a informacion
           },

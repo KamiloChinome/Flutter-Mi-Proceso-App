@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:miprocesoapp/global_widgets/global_icon_button.dart';
+import 'package:miprocesoapp/share_preferences/user_preferences.dart';
+import 'package:miprocesoapp/theme/theme_provider.dart';
+import 'package:miprocesoapp/theme/themes.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/texts.dart';
+import 'package:provider/provider.dart';
 
 class UserProfileScreen extends StatelessWidget {
   
@@ -22,13 +27,29 @@ class UserProfileScreen extends StatelessWidget {
                 onTap: (){
                   Navigator.pop(context);
                 },
-                child: const Icon(Icons.arrow_back_ios_new_outlined, size: 30, )),
+                child: Icon(Icons.arrow_back_ios_new_outlined, 
+                color: Provider.of<ThemeProvider>(context).iconColor,
+                size: 33,
+                )),
               CircleAvatar(
-                backgroundColor: marca1,
+                backgroundColor: negrodark,
                 radius: sizeHeight * 0.08,
                 child: const Icon(Icons.person, size: 100, color: marca2,),
               ),
-              const Icon(Icons.sunny, size: 30, color: marca1,),
+              GlobalIconButton(
+                iconSize: 33,
+                color: Provider.of<ThemeProvider>(context).iconColor,
+                icon: Provider.of<ThemeProvider>(context).selectedIconTheme, 
+                onPressed: (){
+                  if(Preferences.darkMode == true){
+                    Preferences.darkMode = false;
+                    Provider.of<ThemeProvider>(context, listen: false).setLightMode();
+                  }else{
+                    Preferences.darkMode = true;
+                    Provider.of<ThemeProvider>(context, listen: false).setDarckMode();
+                  }
+                }, 
+              ),
               const SizedBox(width: 1,),
             ],
           ),
@@ -43,7 +64,7 @@ class UserProfileScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
               color: verde2
             ),
-            child: const Center(child: Text(actualPlan, style: TextStyle(color: Colors.white, fontSize: 25),)),
+            child: Center(child: Text(actualPlan, style: Theme.of(context).textTheme.titleMedium)),
           ),
           
           _ProfileFormatContainer(icon: Icons.person, text: personalInformation, onTap: () => Navigator.pushNamed(context, 'PersonalInformation'),),
@@ -78,6 +99,7 @@ class _ProfileFormatContainer extends StatelessWidget {
         margin: const EdgeInsets.only(top: 30),
         height: sizeHeight * 0.08, width: sizeWidth * 0.85,
         decoration: BoxDecoration(
+          
           borderRadius: BorderRadius.circular(100),
           boxShadow: const [
             BoxShadow(
@@ -86,14 +108,16 @@ class _ProfileFormatContainer extends StatelessWidget {
               offset: Offset(4, 4)
             )
           ],
-          color: Colors.grey[200],
+          color: Theme.of(context).cardColor,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(icon, size: 30, color: opcion2,),
+            Icon(icon),
             Text(text, style: const TextStyle(fontSize: 17),),
-            const Icon(Icons.arrow_forward_ios_outlined, size: 30, color: marca1,)
+            Icon(Icons.arrow_forward_ios_outlined, size: 30,
+            color: (Provider.of<ThemeProvider>(context).currentTheme == lightTheme) ? marca1 : marca2
+            )
           ],
         ),
       ),

@@ -38,12 +38,17 @@ class _TextInformation extends StatelessWidget {
         double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: EdgeInsets.only(top: sizeHeight * 0.015, left: sizeWidth * 0.035),
+      padding: EdgeInsets.only(top: sizeHeight * 0.015, left: sizeWidth * 0.035, right: sizeWidth * 0.035),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title, style: const TextStyle(fontSize: 17, fontFamily: poppinsB)),
           Text(subtitle, style: const TextStyle(fontSize: 16),),
+          const Divider(
+            endIndent: 0,
+            indent: 0,
+            thickness: 1.3,
+          )
           ]
         ),
     );

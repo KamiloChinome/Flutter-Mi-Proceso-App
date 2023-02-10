@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/values/colors.dart';
-import 'package:miprocesoapp/values/texts.dart';
 class GlobalAlertDialog extends StatelessWidget {
   final String title;
   final List<Widget> children;
@@ -9,10 +7,11 @@ class GlobalAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       shape: RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.circular(16)),
       elevation: 5,
       title: Text(title, textAlign: TextAlign.center,),
-      titleTextStyle: const TextStyle(fontFamily: poppinsB, fontSize: 18, color: marca1,),
+      titleTextStyle: Theme.of(context).textTheme.bodyLarge,
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: children,

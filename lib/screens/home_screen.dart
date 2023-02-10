@@ -5,6 +5,8 @@ import 'package:miprocesoapp/providers/button_provider.dart';
 import 'package:miprocesoapp/providers/icon_filter_provider.dart';
 import 'package:miprocesoapp/providers/page_view_provider.dart';
 import 'package:miprocesoapp/search/search_delegate.dart';
+import 'package:miprocesoapp/theme/theme_provider.dart';
+import 'package:miprocesoapp/theme/themes.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/info.dart';
 import 'package:miprocesoapp/values/texts.dart';
@@ -57,7 +59,6 @@ class _Scaffold extends StatelessWidget {
           width: 57,
           child: FittedBox(
             child: FloatingActionButton(
-              backgroundColor: marca2,
               child: const Icon(Icons.add, color: marca1,),
               onPressed: (){
                 FocusScope.of(context).unfocus();
@@ -81,78 +82,80 @@ class _Drawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle? drawerFont = Theme.of(context).textTheme.bodyMedium;
     return Drawer(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       child: ListView(
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 21),
-            child: DrawerHeader(child: Image(image: AssetImage('assets/logos/logodeslisable.png'), fit: BoxFit.cover,)
-            )
+          Padding(
+            padding:  EdgeInsets.symmetric(horizontal: ((Provider.of<ThemeProvider>(context).currentTheme == darkTheme) ? 35 : 30)),
+            child: Image(image: AssetImage(
+              (Provider.of<ThemeProvider>(context).currentTheme == darkTheme) 
+                ? 'assets/logos/logo_deslizable_blanco.png' 
+                : 'assets/logos/logo_deslizable.png'),
+                height: 110,
+              ),
           ),
+          const SizedBox(height: 30),
           ListTile(
-            leading: const Icon(Icons.person, color: iconColor,),
-            title: const Text(profile, style: TextStyle(fontSize: 17),),
+            leading: const Icon(Icons.person),
+            title: Text(profile, style: drawerFont,),
             onTap: () {
               Navigator.pushNamed(context, 'UserProfile');
             },
           ),
           ListTile(
-            leading: const Icon(Icons.alarm, color: iconColor,),
-            title: const Text(alarms, style: TextStyle(fontSize: 17),),
+            leading: const Icon(Icons.alarm),
+            title: Text(alarms, style: drawerFont,),
             onTap: () {Navigator.pushNamed(context, 'AlarmScreen');},
           ),
           ListTile(
-            leading: const Icon(Icons.amp_stories_outlined, color: iconColor,),
-            title: const Text(plans, style: TextStyle(fontSize: 17),),
+            leading: const Icon(Icons.amp_stories_outlined),
+            title: Text(plans, style: drawerFont,),
             onTap: () {
               Navigator.pushNamed(context, 'PlansScreen');
             },
           ),
           const Divider(
-            color: marca1,
             endIndent: 30,
             indent: 30,
             thickness: 1.3,
           ),
           ExpansionTile(
-            iconColor: iconColor,
             textColor: azulrey,
-            leading: const Icon(
-              Icons.business_center,
-              color: opcion2,
-            ),
-            title: const Text(
+            collapsedTextColor: Theme.of(context).appBarTheme.titleTextStyle?.color,
+            leading: const Icon(Icons.business_center),
+            title: Text(
               companies,
-              style: TextStyle(fontFamily: 'Poppins-Bold', fontSize: 17),
+              style: drawerFont,
             ),
             children: [
               ListTile(
-              leading: const Icon(Icons.business_sharp, color: iconColor,),
-              title: const Text(userName, style: TextStyle(fontSize: 17),),
+              leading: const Icon(Icons.business_sharp),
+              title:  Text(userName, style: drawerFont,),
               onTap: () {},
               ),
               ListTile(
-              leading: const Icon(Icons.business_sharp, color: iconColor,),
-              title: const Text(userName, style: TextStyle(fontSize: 17),),
+              leading: const Icon(Icons.business_sharp),
+              title: Text(userName, style: drawerFont,),
               onTap: () {},
               ),
             ],
             ),
           const Divider(
-            color: marca1,
             endIndent: 30,
             indent: 30,
             thickness: 1.3,
           ),
           ListTile(
-              leading: const Icon(Icons.support_agent_rounded, color: iconColor,),
-              title: const Text(suport, style: TextStyle(fontSize: 17),),
+              leading: const Icon(Icons.support_agent_rounded),
+              title:  Text(suport, style: drawerFont,),
               onTap: () {},
               ),
           
           ListTile(
-            leading: const Icon(Icons.arrow_back_ios_new_outlined, color: iconColor,),
-            title: const Text(exit, style: TextStyle(fontSize: 17),),
+            leading: const Icon(Icons.arrow_back_ios_new_outlined),
+            title:  Text(exit, style: drawerFont,),
             onTap: () => SystemNavigator.pop()
           ),
         ],
@@ -172,75 +175,69 @@ class _BottomNavigationHome extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return BottomAppBar(
+      color: Theme.of(context).colorScheme.surface,
       elevation: 10,
       shape: const CircularNotchedRectangle(),
       notchMargin: 10,
       child: SizedBox(
-        height: 60,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Button(
-                  icon: Icons.article_outlined,
-                  color: opcion1,
-                  currentIndex: 0,
-                  onPressed: () {
-                    Provider.of<ButtonProvider>(context, listen: false).selectedButton = 0;
-                    Provider.of<PageViewProvider>(context, listen: false).page = 0;
-                    controller.jumpToPage(0);
-                  },
-                  text: allProcess,
-                ),
-                SizedBox(width: sizeWidth * 0.03),
-                Button(
-                  icon: Icons.check,
-                  color: verde,
-                  currentIndex: 1,
-                  onPressed: () {
-                    Provider.of<ButtonProvider>(context, listen: false).selectedButton = 1;
-                    Provider.of<PageViewProvider>(context, listen: false).page = 1;
-                    controller.jumpToPage(1);
-                    // controller.animateToPage(1, duration: const Duration(milliseconds: 550), curve: Curves.easeInQuart);
-                  },
-                  text: reviewed,
-                ),
-                 SizedBox(width: sizeWidth * 0.05)
-              ], 
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Button(
-                  icon: Icons.cancel_outlined,
-                  color: Colors.red,
-                  currentIndex: 2,
-                  onPressed: () {
-                    Provider.of<ButtonProvider>(context, listen: false).selectedButton = 2;
-                    Provider.of<PageViewProvider>(context, listen: false).page = 2;
-                    // controller.animateToPage(3, duration: const Duration(milliseconds: 550), curve: Curves.easeInQuart);
-                    controller.jumpToPage(2);
-                  },
-                  text: noChecked,
-                ),
-                SizedBox(width: sizeWidth * 0.02),
-                Button(
-                  icon: Icons.change_circle_outlined,
-                  color: opcion1,
-                  currentIndex: 3,
-                  onPressed: () {
-                    Provider.of<ButtonProvider>(context, listen: false).selectedButton = 3;
-                    Provider.of<PageViewProvider>(context, listen: false).page = 3;
-                    // controller.animateToPage(4, duration: const Duration(milliseconds: 550), curve: Curves.easeInQuart);
-                    controller.jumpToPage(3);
-                  },
-                  text: news,
-                ),
-              ],
-            ),
-          ],
+        height: 55,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(width: sizeWidth * 0.06),
+              BottomNavigationBarButton(
+                icon: Icons.article_outlined,
+                color: azul2,
+                currentIndex: 0,
+                onPressed: () {
+                  Provider.of<ButtonProvider>(context, listen: false).selectedButton = 0;
+                  Provider.of<PageViewProvider>(context, listen: false).page = 0;
+                  controller.jumpToPage(0);
+                },
+                text: allProcess, 
+              ),
+              SizedBox(width: sizeWidth * 0.06),
+              BottomNavigationBarButton(
+                icon: Icons.check,
+                color: verde,
+                currentIndex: 1,
+                onPressed: () {
+                  Provider.of<ButtonProvider>(context, listen: false).selectedButton = 1;
+                  Provider.of<PageViewProvider>(context, listen: false).page = 1;
+                  controller.jumpToPage(1);
+                },
+                text: reviewed,
+              ),
+              SizedBox(width: sizeWidth * 0.15),
+              BottomNavigationBarButton(
+                icon: Icons.cancel_outlined,
+                color: Colors.red,
+                currentIndex: 2,
+                onPressed: () {
+                  Provider.of<ButtonProvider>(context, listen: false).selectedButton = 2;
+                  Provider.of<PageViewProvider>(context, listen: false).page = 2;
+                  controller.jumpToPage(2);
+                },
+                text: noChecked,
+              ),
+              SizedBox(width: sizeWidth * 0.06),
+              BottomNavigationBarButton(
+                icon: Icons.change_circle_outlined,
+                color: opcion1,
+                currentIndex: 3,
+                onPressed: () {
+                  Provider.of<ButtonProvider>(context, listen: false).selectedButton = 3;
+                  Provider.of<PageViewProvider>(context, listen: false).page = 3;
+                  // controller.animateToPage(4, duration: const Duration(milliseconds: 550), curve: Curves.easeInQuart);
+                  controller.jumpToPage(3);
+                },
+                text: news,
+              ),
+              SizedBox(width: sizeWidth * 0.06),
+            ], 
+          ),
         ),
       ),
     );
@@ -327,16 +324,16 @@ class _SelectedIconFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     IconData selectedicon = Provider.of<IconFilterprovider>(context).selectedIcon;
     return IconButton(
-      icon: Icon(selectedicon, size: 30,),
+      icon: Icon(selectedicon),
       onPressed: (){
         final filterSnackbar = SnackBar(
           duration: const Duration(milliseconds: 1000),
-          // padding: EdgeInsets.only(bottom: sizeHeight * 0.03, top: sizeHeight * 0.03),
-          backgroundColor: marca1,
+          backgroundColor: azulDark,
           content: Text((selectedicon == Icons.star) 
           ? filterOne
           : filterTwo, 
-          style: const TextStyle(color: blanco, fontSize: 20),textAlign: TextAlign.center,),
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
         );
         if(selectedicon == Icons.star){
           ScaffoldMessenger.of(context).showSnackBar(filterSnackbar);

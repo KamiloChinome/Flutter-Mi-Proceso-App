@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:miprocesoapp/theme/theme_provider.dart';
+import 'package:miprocesoapp/theme/themes.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/texts.dart';
+import 'package:provider/provider.dart';
 
 class PersonalInformationScreen extends StatelessWidget {
   
@@ -8,6 +11,7 @@ class PersonalInformationScreen extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    Color dividerColor = (Provider.of<ThemeProvider>(context).currentTheme == lightTheme) ? marca1 : marca2;
     double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWidth = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -17,13 +21,13 @@ class PersonalInformationScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new_outlined, size: 30, color: marca1,),
+            icon: Icon(Icons.arrow_back_ios_new_outlined, color: Provider.of<ThemeProvider>(context).iconColor, size: 33,),
             onPressed: () => Navigator.pop(context),
             ),
             SizedBox(height: sizeHeight * 0.01,),
             Padding(
               padding: EdgeInsets.only(left: sizeWidth * 0.04),
-              child: const Text(personalInformation, style: TextStyle(color: marca1, fontSize: 25, fontFamily: poppinsB),),
+              child: Text(personalInformation, style: Theme.of(context).textTheme.titleLarge,),
             ),
             SizedBox(height: sizeHeight * 0.02,),
             Row(
@@ -31,12 +35,12 @@ class PersonalInformationScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: sizeWidth * 0.04, right: sizeWidth * 0.07),
                   child: CircleAvatar(
-                    backgroundColor: marca1,
+                    backgroundColor: Theme.of(context).primaryColorDark,
                     radius: sizeHeight * 0.06,
                     child: Icon(Icons.person, size: sizeHeight * 0.08, color: marca2,),
                   ),
                 ),
-                const Expanded(child: Text(captureImage, style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: poppinsL), maxLines: 2, overflow: TextOverflow.ellipsis,)),
+                Expanded(child: Text(captureImage, style: Theme.of(context).textTheme.bodySmall, maxLines: 2, overflow: TextOverflow.ellipsis,)),
               ],
             ),
             Stack(
@@ -45,15 +49,14 @@ class PersonalInformationScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(35),
                 margin: EdgeInsets.only(left: sizeWidth * 0.04, right: sizeWidth * 0.04, top: sizeHeight * 0.025),
                 width: double.infinity,
-                height: sizeHeight * 0.65,
                 decoration: BoxDecoration(
-                  color: blanco,
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(35),
-                  boxShadow: const[
+                  boxShadow: [
                     BoxShadow(
-                      color: Colors.black26,
+                      color: Theme.of(context).shadowColor,
                       blurRadius: 10,
-                      offset: Offset(3, 3)
+                      offset: const Offset(3, 3)
                     )
                   ]
                 ),
@@ -61,43 +64,43 @@ class PersonalInformationScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: sizeHeight * 0.01,),
-                    const Text(fullName, style: TextStyle(color: marca1, fontSize: 18, fontFamily: poppinsB),),
+                    Text(fullName, style: Theme.of(context).textTheme.bodyLarge,),
                     SizedBox(height: sizeHeight * 0.01,),
                     const Text(userName, style: TextStyle(fontSize: 17),),
-                    const Divider(
-                      color: marca1,
+                    Divider(
+                      color: dividerColor,
                       thickness: 1.3,
                     ),
                     SizedBox(height: sizeHeight * 0.01,),
-                    const Text(identification, style: TextStyle(color: marca1, fontSize: 18, fontFamily: poppinsB),),
+                    Text(identification, style: Theme.of(context).textTheme.bodyLarge,),
                     SizedBox(height: sizeHeight * 0.01,),
                     const Text(userIdentification, style: TextStyle(fontSize: 17),),
-                    const Divider(
-                      color: marca1,
+                    Divider(
+                      color: dividerColor,
                       thickness: 1.3,
                     ),
                     SizedBox(height: sizeHeight * 0.01,),
-                    const Text(email, style: TextStyle(color: marca1, fontSize: 18, fontFamily: poppinsB),),
+                    Text(email, style: Theme.of(context).textTheme.bodyLarge,),
                     SizedBox(height: sizeHeight * 0.01,),
                     const Text(userEmail, style: TextStyle(fontSize: 17),),
-                    const Divider(
-                      color: marca1,
+                    Divider(
+                      color: dividerColor,
                       thickness: 1.3,
                     ),
                     SizedBox(height: sizeHeight * 0.01,),
-                    const Text(phone, style: TextStyle(color: marca1, fontSize: 18, fontFamily: poppinsB),),
+                    Text(phone, style: Theme.of(context).textTheme.bodyLarge,),
                     SizedBox(height: sizeHeight * 0.01,),
                     const Text(userPhone, style: TextStyle(fontSize: 17),),
-                    const Divider(
-                      color: marca1,
+                    Divider(
+                      color: dividerColor,
                       thickness: 1.3,
                     ),
                     SizedBox(height: sizeHeight * 0.01,),
-                    const Text(process, style: TextStyle(color: marca1, fontSize: 18, fontFamily: poppinsB),),
+                    Text(process, style: Theme.of(context).textTheme.bodyLarge,),
                     SizedBox(height: sizeHeight * 0.01,),
                     Text((suscribedProcesses).toString(), style: const TextStyle(fontSize: 17),),
-                    const Divider(
-                      color: marca1,
+                    Divider(
+                      color: dividerColor,
                       thickness: 1.3,
                     ),
                     SizedBox(height: sizeHeight * 0.01,),
@@ -108,6 +111,7 @@ class PersonalInformationScreen extends StatelessWidget {
                 top: 32,
                 right: 32,
                 child: IconButton(
+                  color: (Provider.of<ThemeProvider>(context).currentTheme == lightTheme) ? marca1 : marca2,
                   icon: const Icon(Icons.edit), onPressed: (){},
                 ),
               )

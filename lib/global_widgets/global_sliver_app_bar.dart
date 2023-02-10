@@ -26,8 +26,6 @@ class GlobalSliverAppbar extends StatelessWidget {
       expandedHeight: sizeHeight*0.1,
       floating: true,
       title: _Title(titleText: titleText, screeninfo: screeninfo),
-      centerTitle: true,
-      backgroundColor: marca1,
       leading: GlobalIconButton(
         icon: iconLeading, 
         iconSize: 30, 
@@ -55,8 +53,8 @@ class _Title extends StatelessWidget {
         Column(
           children: [
             const SizedBox(height: 5,),
-            Text(titleText, style: const TextStyle(fontFamily: poppinsR, fontSize: 19),),
-            Text(screeninfo, style: const TextStyle(fontFamily: poppinsR, fontSize: 18),),
+            Text(titleText, style: Theme.of(context).appBarTheme.titleTextStyle),
+            Text(screeninfo, style: Theme.of(context).appBarTheme.titleTextStyle),
           ],
         )
       ],

@@ -125,6 +125,7 @@ class _AddProcessFormat extends StatelessWidget {
                 GlobalOutlinedButton(text: search, onPressed: () { 
                   //TODO: BUSCAR PROCESO
                 },),
+                SizedBox(height: sizeHeight * 0.04)
               ],
             ),
           ),
@@ -147,6 +148,7 @@ class _Swich extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LiteRollingSwitch(
+      textSize: 15,
       width: sizeWidth * 0.51,
       textOff: fullNumber,
       textOn: addProcessInstruction2,
@@ -175,14 +177,12 @@ class _AppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      centerTitle: true,
-      backgroundColor: appBarbackgroundColor,
       leading:  GestureDetector(
         onTap: () {
           Provider.of<ButtonProvider>(context, listen: false).selectedButton = 0;
           Navigator.pop(context);
         },
-        child: const Icon(Icons.arrow_back_ios_new_outlined, size: 30,)
+        child: const Icon(Icons.arrow_back_ios_new_outlined)
       ),
       title: Stack(
         children:  [

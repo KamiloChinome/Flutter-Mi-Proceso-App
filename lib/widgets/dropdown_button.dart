@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/info.dart';
 import 'package:miprocesoapp/values/texts.dart';
 
@@ -13,23 +12,15 @@ class AddProcessDropDownButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: sizeWidth * 0.06),
       child: DropdownButtonFormField(
+        dropdownColor: Theme.of(context).colorScheme.surface,
+        style: Theme.of(context).textTheme.labelSmall,
         menuMaxHeight: 410,
         decoration:  InputDecoration(
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: marca1
-            ),
-          ),
-          focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: azulrey,
-              width: 2.4
-            )
-          ),
           hintText: selectcityHint,
-          hintStyle: const TextStyle(fontFamily: poppinsL),
+          hintStyle: Theme.of(context).textTheme.labelSmall,
+          labelStyle: Theme.of(context).textTheme.labelSmall,
           labelText: selectcityLabel,
-          prefixIcon: Icon(icon, color: marca1, size: 30,),
+          prefixIcon: Icon(icon),
         ),
         items: citys.map<DropdownMenuItem<String>>((String value) {
       return DropdownMenuItem<String>(

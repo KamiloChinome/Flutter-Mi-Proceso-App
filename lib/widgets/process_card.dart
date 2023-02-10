@@ -16,7 +16,6 @@ class ProcessItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWidth = MediaQuery.of(context).size.width;
     return Column(
       children: [
@@ -27,7 +26,6 @@ class ProcessItem extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
             margin: const EdgeInsets.symmetric(horizontal: 10),
-            height: sizeHeight * 0.165,
             decoration:  const BoxDecoration(
               boxShadow: [
               ]
@@ -88,7 +86,6 @@ class ProcessItem extends StatelessWidget {
               ),
         ),
         const Divider(
-          color: marca1,
           indent: 30,
           endIndent: 30,
           thickness: 1.3,

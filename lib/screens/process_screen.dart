@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:miprocesoapp/providers/subscribe_process_provider.dart';
+import 'package:miprocesoapp/theme/theme_provider.dart';
+import 'package:miprocesoapp/theme/themes.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/info.dart';
 import 'package:miprocesoapp/values/texts.dart';
@@ -40,6 +42,7 @@ class _LeftMenuDrawer extends StatelessWidget {
     double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWidth = MediaQuery.of(context).size.width;
     return Drawer(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       width: sizeWidth * 0.16,
       child: Column(
         children: [
@@ -50,7 +53,7 @@ class _LeftMenuDrawer extends StatelessWidget {
                   return showDialog(
                     context: context, 
                     builder: (context) => GlobalAlertDialog(
-                      title: '¿Suscribirse al proceso?',
+                      title: subscribeToProcess,
                       actions: null, 
                       children: [
                         Row(
@@ -59,10 +62,18 @@ class _LeftMenuDrawer extends StatelessWidget {
                             TextButton(onPressed: (){
                               Navigator.pop(context);
                               //TODO: SUSCRIBIRSE AL PROCESO
-                            }, child: const Text('Confirmar', style: TextStyle(fontSize: 17, color: azulrey),),),
+                            }, child: Text(confirm, style: TextStyle(
+                                fontSize: 17,
+                                color: (Provider.of<ThemeProvider>(context).currentTheme == lightTheme) ? azulrey : blanco,
+                                fontFamily: poppinsR
+                              ),),),
                             TextButton(onPressed: (){
                               Navigator.pop(context);
-                            }, child: const Text('Cancelar', style: TextStyle(fontSize: 17, color: azulrey),),),
+                            }, child: Text(cancel, style: TextStyle(
+                                fontSize: 17,
+                                color: (Provider.of<ThemeProvider>(context).currentTheme == lightTheme) ? azulrey : blanco,
+                                fontFamily: poppinsR
+                              ),),),
                         ])
                       ], 
                     )
@@ -73,7 +84,7 @@ class _LeftMenuDrawer extends StatelessWidget {
                   return showDialog(
                     context: context, 
                     builder: (context) => GlobalAlertDialog(
-                      title: '¿Eliminar el proceso?',
+                      title: deleteprocess,
                       actions: null, 
                       children: [
                         Row(
@@ -82,10 +93,10 @@ class _LeftMenuDrawer extends StatelessWidget {
                             TextButton(onPressed: (){
                               Navigator.pop(context);
                               //TODO: SUSCRIBIRSE AL PROCESO
-                            }, child: const Text('Confirmar', style: TextStyle(fontSize: 17, color: azulrey),),),
+                            }, child: Text(confirm, style: Theme.of(context).textTheme.bodyMedium,),),
                             TextButton(onPressed: (){
                               Navigator.pop(context);
-                            }, child: const Text('Cancelar', style: TextStyle(fontSize: 17, color: azulrey),),),
+                            }, child: Text(cancel, style: Theme.of(context).textTheme.bodyMedium,),),
                         ])
                       ], 
                     )
@@ -97,17 +108,16 @@ class _LeftMenuDrawer extends StatelessWidget {
           _LeftMenuOption(icon: favorite, onTap: () {
             
             //SNACKBARS
-            const favoriteSnackBar = SnackBar(
-              duration: Duration(milliseconds: 800),
-              backgroundColor: verde2,
-              content: Text('Se agrego a favoritos', style: TextStyle(color: marca1, fontSize: 20),),
+            final favoriteSnackBar = SnackBar(
+              duration: const Duration(milliseconds: 800),
+              backgroundColor: negrodark,
+              content: Text(addToFavorites, style: Theme.of(context).textTheme.headlineSmall,),
             );
-            const deleteSnackBar = SnackBar(
-              duration: Duration(milliseconds: 800),
-              backgroundColor: marca1,
-              content: Text('Se elimino de favoritos', style: TextStyle(color: blanco, fontSize: 20),),
+            final deleteSnackBar = SnackBar(
+              duration: const Duration(milliseconds: 800),
+              backgroundColor: negrodark,
+              content:  Text(deleteToFavorites, style: Theme.of(context).textTheme.headlineSmall,),
             );
-
             Scaffold.of(context).closeEndDrawer();
             if(favorite == Icons.star_border_outlined){
               Provider.of<SubscribeProcessModel>(context, listen: false).favorite = Icons.star;
@@ -128,10 +138,10 @@ class _LeftMenuDrawer extends StatelessWidget {
               builder: (context) => GlobalAlertDialog(
                 title: proceedingRegist,
               children: [
-                const GlobalTextFormField(hintText: '1/2/2023', labelText: 'fecha', prefixIcon: Icons.calendar_month,),
-                const GlobalTextFormField(hintText: 'Titulo', labelText: 'Actuacion', prefixIcon: Icons.announcement_rounded,),
+                const GlobalTextFormField(hintText: date, labelText: 'fecha', prefixIcon: Icons.calendar_month,),
+                const GlobalTextFormField(hintText: title, labelText: 'Actuacion', prefixIcon: Icons.announcement_rounded,),
                 const GlobalTextFormField(hintText: 'Descripcion de la actuacion', labelText: 'Descripcion', prefixIcon: Icons.note, maxLines: 2,),
-                SizedBox(height: sizeHeight * 0.04,),
+                SizedBox(height: sizeHeight * 0.03,),
                 GlobalOutlinedButton(text: 'Agregar', onPressed: (){
                   //TODO: AGREGAR ACTUACION
                 })
@@ -164,7 +174,7 @@ class _LeftMenuOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Icon(icon, size: 30, color: marca1,)
+      child: Icon(icon, color: (Provider.of<ThemeProvider>(context).currentTheme == lightTheme) ? marca1 : marca2,)
     );
   }
 }
@@ -207,30 +217,27 @@ class ProcessDetaillCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(9),
         margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
-        height: sizeHeight * 0.12,
         width: sizeWidth * 0.92,
         decoration: BoxDecoration(
-          color: Colors.grey[300],
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(10)
         ),
         child: Stack(
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(actuationName, style: TextStyle(color: marca1, fontSize: 18, fontFamily: poppinsB),),
-                      Padding(
-                        padding: EdgeInsets.only(right: 20),
-                        child: Text(actuationDescription, style: TextStyle( fontSize: 17),maxLines: 2,overflow: TextOverflow.ellipsis,),
-                      ),
+                    children: [
+                      Text(actuationName, style: Theme.of(context).textTheme.bodyLarge,),
+                      const Text(actuationDescription, style: TextStyle( fontSize: 17),maxLines: 2,overflow: TextOverflow.ellipsis,),
                     ],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: sizeHeight * 0.0325),
+                  padding: EdgeInsets.only(top: sizeHeight * 0.02),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -241,7 +248,7 @@ class ProcessDetaillCard extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 4,),
-                      const Text(date),
+                      Text(date, style: Theme.of(context).textTheme.bodySmall,),
                     ],
                   ),
                 )

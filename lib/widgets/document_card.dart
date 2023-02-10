@@ -18,7 +18,7 @@ class DocumentCard extends StatelessWidget {
                 height: sizeHeight * 0.085,
                 width: sizeWidth * 0.9,
                 decoration: BoxDecoration(
-                color: Colors.grey[100],
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
@@ -39,7 +39,6 @@ class DocumentCard extends StatelessWidget {
                 ),
               ),
               const Divider(
-                color: marca1,
                 thickness: 1,
                 endIndent: 20,
                 indent: 20,

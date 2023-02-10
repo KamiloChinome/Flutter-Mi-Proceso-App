@@ -2,71 +2,47 @@ import 'package:flutter/material.dart';
 import 'package:miprocesoapp/values/colors.dart';
 
 class AuthPage extends StatelessWidget {
-  final Widget logInForm;
-  final String buttonText;
-  final Function()? onPressed;
-  final double percentage;
+  final List<Widget> children;
+  final Widget child;
   const AuthPage({
     super.key, 
-    required this.logInForm, 
-    required this.buttonText, 
-    required this.onPressed, 
-    this.percentage = 0.25
+    required this.children, required this.child, 
     });
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const _Marca1Box(),
-        _FormBox(
-          text: buttonText,
-          onPressed: onPressed,
-          percentage: percentage,
-          logInForm: logInForm,
-        ),
+        _Marca1Box(child: child,),
+        _FormBox(children: children,),
+        // _Marca1Box(child: child,),
       ],
     );
   }
 }
 
 class _FormBox extends StatelessWidget {
-  final Widget logInForm;
-  final String text;
-  final Function()? onPressed;
-  final double percentage;
-  const _FormBox({Key? key, required this.logInForm, required this.text, required this.onPressed, required this.percentage,}) : super(key: key);
+  final List<Widget> children;
+  const _FormBox({
+    Key? key, 
+    required this.children, 
+    }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    
-    final size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
-        children: [
-          SizedBox(height: size.height * 0.3,),
-          logInForm,
-          SizedBox(height: size.height * 0.02,),
-          TextButton(
-            onPressed: onPressed, 
-            child: Text(text, 
-            style: const TextStyle(
-              fontSize: 18, 
-              color: azulrey
-            ),
-            textAlign: TextAlign.center,
-          )),
-          SizedBox(height: size.height * percentage,),
-        ],
+        children: children,
       ),
     );
   }
 }
 
 class _Marca1Box extends StatelessWidget {
+  final Widget child;
   const _Marca1Box({
-    Key? key,
+    Key? key, required this.child,
   }) : super(key: key);
 
   @override
@@ -79,14 +55,7 @@ class _Marca1Box extends StatelessWidget {
       child: Stack(
         children: [
           Center(
-            child: SizedBox(
-              width: size.width * 0.7,
-              height: size.height * 0.3,
-              child: const Image(
-                image: AssetImage('assets/logos/logo1.png'), 
-                fit: BoxFit.contain,
-              ),
-            ),
+              child: child,
           ),
           const Positioned(top: 20,left: 40,child: _Bubble(),),
           const Positioned(top: 250,left: 0,child: _Bubble(),),
