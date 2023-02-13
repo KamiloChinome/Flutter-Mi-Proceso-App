@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/values/colors.dart';
-import 'package:miprocesoapp/values/texts.dart';
-import 'package:miprocesoapp/global_widgets/global_icon_button.dart';
+import 'package:miprocesoapp/widgets/global_widgets/global_icon_button.dart';
 
 class GlobalSliverAppbar extends StatelessWidget {
   final String screeninfo;

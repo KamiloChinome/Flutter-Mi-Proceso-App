@@ -1,21 +1,22 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/global_widgets/global_outlined_button.dart';
-import 'package:miprocesoapp/auth/login_or_create_acount_provider.dart';
+import 'package:miprocesoapp/auth/auth_service.dart';
+import 'package:miprocesoapp/auth/email_verification_screen.dart';
+import 'package:miprocesoapp/auth/login_and_sign_uo_provider.dart';
 import 'package:miprocesoapp/screens/home_screen.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/texts.dart';
 import 'package:miprocesoapp/widgets/auth_page.dart';
 import 'package:provider/provider.dart';
 
-class LogInOrCreateAnAcountScreen extends StatelessWidget {
+class LogInAndSignUpScreen extends StatelessWidget {
   
-  const LogInOrCreateAnAcountScreen({Key? key}) : super(key: key);
+  const LogInAndSignUpScreen({Key? key}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => LogInOrCreateAnAcountProvider(),
+      create: (context) => LogInAndSignUpProvider(),
       child: const Scaffold(
         backgroundColor: blanco,
         body: AuthPage(
@@ -35,7 +36,7 @@ class _Children extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool visible = Provider.of<LogInOrCreateAnAcountProvider>(context).visible;
+    final authFormService = Provider.of<LogInAndSignUpProvider>(context);
     final size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(10),
@@ -46,10 +47,11 @@ class _Children extends StatelessWidget {
             SizedBox(height: size.height * 0.02,),
             TextButton(
               onPressed: () {
-                Provider.of<LogInOrCreateAnAcountProvider>(context, listen: false).visible = !visible;
+                authFormService.visible = !authFormService.visible;
+                authFormService.errorForm = false;
               }, 
               child: Text(
-                (visible == false) ? '$existingAccount \n $logIn' : createAnAcount,
+                (authFormService.visible == false) ? '$existingAccount \n $logInText' : createAnAcount,
                 style: const TextStyle(
                   fontFamily: poppinsR,
                 fontSize: 18, 
@@ -57,7 +59,7 @@ class _Children extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             )),
-            SizedBox(height: size.height * ((visible == false) ? 0.001: 0.15)),
+            SizedBox(height: size.height * ((authFormService.visible == false) ? 0.001: 0.15)),
         ],
       ),
     );
@@ -70,12 +72,12 @@ class _LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool visible = Provider.of<LogInOrCreateAnAcountProvider>(context).visible;
+    final logInAndSignUpProvider = Provider.of<LogInAndSignUpProvider>(context);
     final size = MediaQuery.of(context).size;
     return Column(
       children: [
         Visibility(
-          visible: (visible == true) ? true : false,
+          visible: (logInAndSignUpProvider.visible == true) ? true : false,
           child: FadeInUp(
             from: 20,
             child: _CardContainer(
@@ -84,11 +86,11 @@ class _LoginForm extends StatelessWidget {
           ),
         ),
         Visibility(
-          visible: (visible == true) ? false : true,
+          visible: (logInAndSignUpProvider.visible == true) ? false : true,
           child: FadeInUp(
             from: 20,
             child: _CardContainer(
-              child: _CreateAnAcount(size: size)
+              child: _SignUp(size: size)
             ),
           ),
         )
@@ -105,10 +107,16 @@ class _LogIn extends StatelessWidget {
   final Size size;
   @override
   Widget build(BuildContext context) {
+    final loginForm = Provider.of<LogInAndSignUpProvider>(context);
     return Form(
+      key: loginForm.logIn,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Column(
         children: [
-          const Text(logIn, style: TextStyle(color: negro, fontSize: 25, fontFamily: poppinsR),),
+          const Text(logInText, style: TextStyle(color: negro, fontSize: 25, fontFamily: poppinsR),),
+          Visibility(
+            visible: loginForm.errorForm,
+            child: const Text('Correo o contraseña incorrecta', style: TextStyle(color: Colors.red, fontSize: 16, fontFamily: poppinsL),)),
           TextFormField(
             cursorColor: negro,
             style: const TextStyle(fontSize: 17, fontFamily: poppinsR),
@@ -131,6 +139,14 @@ class _LogIn extends StatelessWidget {
               labelText: emailForm, 
               prefixIcon: Icon(Icons.email, color: marca1,),
             ),
+            validator: (value) {
+              String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+              RegExp regExp  = RegExp(pattern);
+              return regExp.hasMatch(value ?? '')
+              ? null
+              :'El correo no es valido';
+            },
+            onChanged: (value) => loginForm.email = value,
           ),
           SizedBox(height: size.height * 0.01,),
           TextFormField(
@@ -153,27 +169,57 @@ class _LogIn extends StatelessWidget {
                 ),
               ),
               hintText: securityPassword,  
-              labelText: password, 
+              labelText: passwordText, 
               prefixIcon: Icon(Icons.password, color: marca1,),
             ),
+            onChanged: (value) => loginForm.password = value,
           ),
           SizedBox(height: size.height * 0.03,),
-          GlobalOutlinedButton(
-            
-            text: logIn, 
-            onPressed: (){
-              //TODO: VALIDAR INFORMACION
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen(),), (route) => false);
-            }
-          ),
+          OutlinedButton(
+            style: OutlinedButton.styleFrom(
+              elevation: 10,
+              minimumSize: Size(size.width * 0.35, size.height * 0.05),
+              backgroundColor: verde2,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))
+            ),
+            onPressed: loginForm.isLoading ? null : () async {
+              FocusScope.of(context).unfocus();
+              final authService = Provider.of<AuthServiceProvider>(context, listen: false);
+              if(!loginForm.isValidLogIn()){
+                return;
+              }else{
+                loginForm.isLoading = true;
+              }
+              final String? resp = await authService.logIn(loginForm.email, loginForm.password);
+              if(resp == null){
+                if(context.mounted) {
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen(),), (route) => false);
+                }
+              }else{
+                loginForm.isLoading = false;
+                loginForm.errorForm = true;
+                //Mostrar error en pantalla
+              }
+            },
+            child: (loginForm.isLoading) 
+            ? const SizedBox(
+              height:  25,
+              width: 25,
+              child: CircularProgressIndicator(
+                strokeWidth: 2.5,
+                color: marca1,
+              ),
+            ) 
+            : const Text(logInText, style: TextStyle(fontSize: 18, color: negro, fontFamily: poppinsR),),
+          )
         ]
       ),
     );
   }
 }
 
-class _CreateAnAcount extends StatelessWidget {
-  const _CreateAnAcount({
+class _SignUp extends StatelessWidget {
+  const _SignUp({
     Key? key,
     required this.size,
   }) : super(key: key);
@@ -182,10 +228,16 @@ class _CreateAnAcount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final signUpForm = Provider.of<LogInAndSignUpProvider>(context);
     return Form(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      key: signUpForm.sigInUp,
       child: Column(
         children: [
           const Text(createAnAcount, style: TextStyle(fontSize: 25, color: negro, fontFamily: poppinsR),),
+          Visibility(
+            visible: signUpForm.errorForm,
+            child: const Text('Correo ya registrado', style: TextStyle(color: Colors.red, fontSize: 16, fontFamily: poppinsL),)),
           TextFormField(
             cursorColor: negro,
             keyboardType: TextInputType.emailAddress,
@@ -209,6 +261,11 @@ class _CreateAnAcount extends StatelessWidget {
               labelText: nameOrUser, 
               prefixIcon: Icon(Icons.person, color: marca1,),
             ),
+            validator: (value) {
+              return (value != null && value.isNotEmpty && value != '') 
+              ? null
+              :'Este campo es requerido';
+            },
           ),
           TextFormField(
             cursorColor: negro,
@@ -233,6 +290,14 @@ class _CreateAnAcount extends StatelessWidget {
               labelText: emailForm, 
               prefixIcon: Icon(Icons.email, color: marca1,),
             ),
+            validator: (value) {
+              String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+              RegExp regExp  = RegExp(pattern);
+              return regExp.hasMatch(value ?? '')
+              ? null
+              :'El correo no es valido';
+            },
+            onChanged: (value) => signUpForm.email = value,
           ),
           SizedBox(height: size.height * 0.01,),
           TextFormField(
@@ -255,9 +320,17 @@ class _CreateAnAcount extends StatelessWidget {
                 ),
               ),
               hintText: securityPassword2,  
-              labelText: password, 
+              labelText: passwordText, 
               prefixIcon: Icon(Icons.password, color: marca1,),
             ),
+            validator: (value) {
+              String pattern = r'^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,12}$';
+              RegExp regExp  = RegExp(pattern);
+              return regExp.hasMatch(value ?? '')
+              ? null
+              :'La contraseña no es valida';
+            },
+            onChanged: (value) => signUpForm.password = value,
           ),
           TextFormField(
             cursorColor: negro,
@@ -282,15 +355,49 @@ class _CreateAnAcount extends StatelessWidget {
               labelText: securityPassword4, 
               prefixIcon: Icon(Icons.security, color: marca1,),
             ),
+            validator: (value) {
+              return (value == signUpForm.password) 
+              ? null
+              : 'Las contraseñas no son iguales';
+            },
           ),
           SizedBox(height: size.height * 0.03,),
-          GlobalOutlinedButton(
-            text: createAcount, 
-            onPressed: (){
-              //TODO: VALIDAR INFORMACION
-              Navigator.pushNamed(context, 'EmailVerificationScreen');
-            }
-          ),
+          OutlinedButton(
+            style: OutlinedButton.styleFrom(
+              elevation: 10,
+              minimumSize: Size(size.width * 0.35, size.height * 0.05),
+              backgroundColor: verde2,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))
+            ),
+            onPressed: signUpForm.isLoading ? null : () async {
+              FocusScope.of(context).unfocus();
+              final authService = Provider.of<AuthServiceProvider>(context, listen: false);
+              if(!signUpForm.isValidsigInUp()){
+                return;
+              }else{
+                signUpForm.isLoading = true;
+              }
+              final String? resp = await authService.signUp(signUpForm.email, signUpForm.password);
+              if(resp == null){
+                if(context.mounted){
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const EmailVerificationScreen(),), (route) => false);
+                }
+              }else{
+                signUpForm.isLoading = false;
+                signUpForm.errorForm = true;
+              }
+            },
+            child: (signUpForm.isLoading) 
+            ? const SizedBox(
+              height:  25,
+              width: 25,
+              child: CircularProgressIndicator(
+                strokeWidth: 2.5,
+                color: marca1,
+              ),
+            ) 
+            : const Text(createAcount, style: TextStyle(fontSize: 18, color: negro, fontFamily: poppinsR),),
+          )
         ]
       ),
     );

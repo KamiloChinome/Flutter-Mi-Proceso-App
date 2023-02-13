@@ -6,7 +6,7 @@ import 'package:miprocesoapp/theme/themes.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/info.dart';
 import 'package:miprocesoapp/values/texts.dart';
-import 'package:miprocesoapp/global_widgets/global_outlined_button.dart';
+import 'package:miprocesoapp/widgets/global_widgets/global_outlined_button.dart';
 import 'package:provider/provider.dart';
 
 

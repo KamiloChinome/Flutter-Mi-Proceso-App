@@ -7,7 +7,7 @@ import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/texts.dart';
 import 'package:miprocesoapp/widgets/add_process_text_formfield.dart';
 import 'package:miprocesoapp/widgets/dropdown_button.dart';
-import 'package:miprocesoapp/global_widgets/global_outlined_button.dart';
+import 'package:miprocesoapp/widgets/global_widgets/global_outlined_button.dart';
 import 'package:provider/provider.dart';
 
 class AddProcessScreen extends StatelessWidget {

@@ -10,10 +10,10 @@ import 'package:miprocesoapp/theme/themes.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/info.dart';
 import 'package:miprocesoapp/values/texts.dart';
-import 'package:miprocesoapp/global_widgets/global_icon_button.dart';
+import 'package:miprocesoapp/widgets/global_widgets/global_icon_button.dart';
 import 'package:miprocesoapp/widgets/material_button.dart';
 import 'package:miprocesoapp/widgets/process_card.dart';
-import 'package:miprocesoapp/global_widgets/global_sliver_app_bar.dart';
+import 'package:miprocesoapp/widgets/global_widgets/global_sliver_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {

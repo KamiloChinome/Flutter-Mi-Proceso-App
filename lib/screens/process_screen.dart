@@ -5,11 +5,11 @@ import 'package:miprocesoapp/theme/themes.dart';
 import 'package:miprocesoapp/values/colors.dart';
 import 'package:miprocesoapp/values/info.dart';
 import 'package:miprocesoapp/values/texts.dart';
-import 'package:miprocesoapp/global_widgets/global_alert_dialog.dart';
-import 'package:miprocesoapp/global_widgets/global_icon_button.dart';
-import 'package:miprocesoapp/global_widgets/global_outlined_button.dart';
-import 'package:miprocesoapp/global_widgets/global_sliver_app_bar.dart';
-import 'package:miprocesoapp/global_widgets/global_text_form_field.dart';
+import 'package:miprocesoapp/widgets/global_widgets/global_alert_dialog.dart';
+import 'package:miprocesoapp/widgets/global_widgets/global_icon_button.dart';
+import 'package:miprocesoapp/widgets/global_widgets/global_outlined_button.dart';
+import 'package:miprocesoapp/widgets/global_widgets/global_sliver_app_bar.dart';
+import 'package:miprocesoapp/widgets/global_widgets/global_text_form_field.dart';
 import 'package:provider/provider.dart';
 
 class ProcessScreen extends StatelessWidget {

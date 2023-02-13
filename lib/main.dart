@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:miprocesoapp/auth/auth_service.dart';
+import 'package:miprocesoapp/auth/check_authh_screen.dart';
 import 'package:miprocesoapp/screens/acount_screen.dart';
 import 'package:miprocesoapp/screens/add_process_screen.dart';
 import 'package:miprocesoapp/screens/alarm_screen.dart';
 import 'package:miprocesoapp/auth/email_verification_screen.dart';
 import 'package:miprocesoapp/screens/home_screen.dart';
-import 'package:miprocesoapp/auth/log_in_and_create_acount.dart';
+import 'package:miprocesoapp/auth/log_in_and_create_acount_screen.dart';
 import 'package:miprocesoapp/screens/personal_information_screen.dart';
 import 'package:miprocesoapp/screens/plans_screen.dart';
 import 'package:miprocesoapp/screens/proceedings_information_screen.dart';
@@ -22,9 +24,12 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarColor: Colors.transparent,));
   await Preferences.init();
   runApp(
-    ChangeNotifierProvider(
-      create: (BuildContext context) => ThemeProvider(darkMode: Preferences.darkMode),
-      child: const MyApp()
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ThemeProvider(darkMode: Preferences.darkMode),),
+        ChangeNotifierProvider(create: (context) => AuthServiceProvider(),)
+      ],
+      child: const MyApp(),
     )
   );
 }
@@ -36,9 +41,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Mi proceso',
-      initialRoute: 'LogInAndCreateAnAcount',
+      initialRoute: 'CheckAuthScreen',
       routes: {
         'AddProcessScreen':(context) => const AddProcessScreen(),
+        'CheckAuthScreen':(context) => const CheckAuthScreen(),
         'AlarmScreen':(context) => const AlarmScreen(),
         'HomeScreen':(context) => const HomeScreen(),
         'PersonalInformation':(context) => const PersonalInformationScreen(),
@@ -49,7 +55,7 @@ class MyApp extends StatelessWidget {
         'ProcessProceedings':(context) => const ProcessScreen(),
         'settings':(context) => const SettingsScreen(),
         'UserProfile':(context) => const UserProfileScreen(),
-        'LogInAndCreateAnAcount':(context) => const LogInOrCreateAnAcountScreen(),
+        'LogInAndSignUp':(context) => const LogInAndSignUpScreen(),
         'EmailVerificationScreen':(context) => const EmailVerificationScreen(),
       },
       theme: Provider.of<ThemeProvider>(context).currentTheme,

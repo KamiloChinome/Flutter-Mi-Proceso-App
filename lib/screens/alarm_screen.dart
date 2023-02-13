@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:miprocesoapp/models/alarms_model.dart';
 import 'package:miprocesoapp/values/texts.dart';
 import 'package:miprocesoapp/widgets/alarm_card.dart';
-import 'package:miprocesoapp/global_widgets/global_icon_button.dart';
-import 'package:miprocesoapp/global_widgets/global_sliver_app_bar.dart';
+import 'package:miprocesoapp/widgets/global_widgets/global_icon_button.dart';
+import 'package:miprocesoapp/widgets/global_widgets/global_sliver_app_bar.dart';
 
 class AlarmScreen extends StatelessWidget {
   

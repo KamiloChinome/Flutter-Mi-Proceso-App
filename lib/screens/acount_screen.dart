@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/global_widgets/global_icon_button.dart';
+import 'package:miprocesoapp/auth/auth_service.dart';
+import 'package:miprocesoapp/widgets/global_widgets/global_icon_button.dart';
 import 'package:miprocesoapp/share_preferences/user_preferences.dart';
 import 'package:miprocesoapp/theme/theme_provider.dart';
 import 'package:miprocesoapp/theme/themes.dart';
@@ -13,6 +14,7 @@ class UserProfileScreen extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthServiceProvider>(context, listen: false);
     double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWidth = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -71,7 +73,10 @@ class UserProfileScreen extends StatelessWidget {
           _ProfileFormatContainer(icon: Icons.settings, text: settings, onTap: () {  },),
           _ProfileFormatContainer(icon: Icons.support_agent_outlined, text: suport, onTap: () {  },),
           _ProfileFormatContainer(icon: Icons.person_add, text: inviteAFriend, onTap: () {  },),
-          _ProfileFormatContainer(icon: Icons.logout, text: logOut, onTap: () {  },),
+          _ProfileFormatContainer(icon: Icons.logout, text: logOutText, onTap: () {
+            authService.logOut();
+            Navigator.pushReplacementNamed(context, 'LogInAndSignUp');
+          },),
           
         ],
       )

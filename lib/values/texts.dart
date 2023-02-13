@@ -11,16 +11,16 @@ const String cancel = 'Cancelar';
 const String title = 'Titulo';
 
 //LOGIN AND CREATE AN ACOUNT
-const String logIn = 'Iniciar Secion';
+const String logInText = 'Iniciar Secion';
 const String emailForm = 'Correo electronico';
-const String password = 'Contraseña';
+const String passwordText = 'Contraseña';
 const String securityPassword = 'Asegurate de que sea segura';
 const String securityPassword2 = 'Debe ser segura';
 const String securityPassword3 = 'Introducela nuevamente';
 const String securityPassword4 = 'Confirma tu contraseña';
 const String existingAccount = '¿Ya tienes una cuenta?';
 const String createAnAcount = 'Crear una cuenta';
-const String nameOrUser = 'Nombre o usuario';
+const String nameOrUser = 'Nombre y apellido';
 const String createAcount = 'Crear cuenta';
 
 
@@ -36,7 +36,7 @@ const String filterTwo = 'Filtrado por favoritos';
 
 const String processId =        '110013867541589765432876';
 const String selectcityLabel =  'Seleccione una ciudad';
-const String userName =         'Nombre del usuario';
+const String userName =         'Nombre y apellido';
 const String userEmail =        'usuario@email.com';
 const String actualPlan =       'Plan actual';
 const String demanding =        'Demandante';
@@ -48,13 +48,13 @@ const String processUbication = 'Lugar';
 const String settings = 'Ajustes';
 const String suport = 'Ayuda y Soporte';
 const String inviteAFriend = 'Invitar a un amigo';
-const String logOut = 'Cerrar sesión';
+const String logOutText = 'Cerrar sesión';
 
 
 
 //ADD_PROCESS_SCREEN TEXTS
 const String addProcessInstruction =      '¿Como desea agregar su proceso?';
-const String  fullNumber =                'Numero completo';
+const String fullNumber =                'Numero completo';
 const String consecutiveNumberLabelText = 'Número de consecutivo';
 const String deliveryLabelText =          'Número de despacho';
 const String fileNumberLabelText =        'Número de radicado';
