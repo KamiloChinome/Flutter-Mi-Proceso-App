@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miprocesoapp/models/process_information_model.dart';
-import 'package:miprocesoapp/values/texts.dart';
+import 'package:miprocesoapp/utils/values/texts.dart';
 import 'package:miprocesoapp/widgets/global_widgets/global_sliver_app_bar.dart';
 
 class ProcessInformationScreen extends StatelessWidget {

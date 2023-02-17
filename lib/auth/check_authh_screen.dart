@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/auth/auth_service.dart';
+import 'package:miprocesoapp/auth/firebase_auth_service.dart';
 import 'package:miprocesoapp/auth/log_in_and_create_acount_screen.dart';
 import 'package:miprocesoapp/screens/home_screen.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +21,6 @@ class CheckAuthScreen extends StatelessWidget {
             }
             if(snapshot.data == ''){
               Future.microtask(() {
-              // Navigator.of(context).pushReplacementNamed('HomeScreen');
               Navigator.pushReplacement(context, PageRouteBuilder(
                 pageBuilder: (_, __, ___) => const LogInAndSignUpScreen(),
                 transitionDuration: const Duration(seconds: 0)
@@ -29,7 +28,6 @@ class CheckAuthScreen extends StatelessWidget {
             });
             }else{
               Future.microtask(() {
-              // Navigator.of(context).pushReplacementNamed('HomeScreen');
               Navigator.pushReplacement(context, PageRouteBuilder(
                 pageBuilder: (_, __, ___) => const HomeScreen(),
                 transitionDuration: const Duration(seconds: 0)

@@ -1,11 +1,14 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/auth/auth_service.dart';
+import 'package:miprocesoapp/auth/firebase_auth_service.dart';
 import 'package:miprocesoapp/auth/email_verification_screen.dart';
-import 'package:miprocesoapp/auth/login_and_sign_uo_provider.dart';
+import 'package:miprocesoapp/auth/login_and_sign_up_provider.dart';
 import 'package:miprocesoapp/screens/home_screen.dart';
-import 'package:miprocesoapp/values/colors.dart';
-import 'package:miprocesoapp/values/texts.dart';
+import 'package:miprocesoapp/utils/connection_status/check_internet_conection_util.dart';
+import 'package:miprocesoapp/utils/connection_status/conection_status_provider.dart';
+import 'package:miprocesoapp/utils/connection_status/warning_widget.dart';
+import 'package:miprocesoapp/utils/values/colors.dart';
+import 'package:miprocesoapp/utils/values/texts.dart';
 import 'package:miprocesoapp/widgets/auth_page.dart';
 import 'package:provider/provider.dart';
 
@@ -108,12 +111,14 @@ class _LogIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginForm = Provider.of<LogInAndSignUpProvider>(context);
+    final connectionStatus = Provider.of<ConnectionStatusProvider>(context);
     return Form(
       key: loginForm.logIn,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Column(
         children: [
           const Text(logInText, style: TextStyle(color: negro, fontSize: 25, fontFamily: poppinsR),),
+          const WarningTextWidget(),
           Visibility(
             visible: loginForm.errorForm,
             child: const Text('Correo o contraseña incorrecta', style: TextStyle(color: Colors.red, fontSize: 16, fontFamily: poppinsL),)),
@@ -182,24 +187,29 @@ class _LogIn extends StatelessWidget {
               backgroundColor: verde2,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))
             ),
-            onPressed: loginForm.isLoading ? null : () async {
+            onPressed: loginForm.isLoading || connectionStatus.status != ConnectionStatus.online 
+            ? null 
+            : () async {
               FocusScope.of(context).unfocus();
+              loginForm.isLoading = true;
               final authService = Provider.of<AuthServiceProvider>(context, listen: false);
-              if(!loginForm.isValidLogIn()){
-                return;
-              }else{
-                loginForm.isLoading = true;
-              }
               final String? resp = await authService.logIn(loginForm.email, loginForm.password);
-              if(resp == null){
-                if(context.mounted) {
-                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen(),), (route) => false);
-                }
-              }else{
+              if(!loginForm.isValidLogIn()){
                 loginForm.isLoading = false;
-                loginForm.errorForm = true;
-                //Mostrar error en pantalla
+                return;
               }
+              if(resp != null){
+                loginForm.errorForm = true;
+                loginForm.isLoading = false;
+                return;
+              }
+              loginForm.errorForm = false;
+              if(context.mounted) {
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen(),), (route) => false);
+                loginForm.isLoading = false;
+                return;
+              }
+              return;
             },
             child: (loginForm.isLoading) 
             ? const SizedBox(
@@ -229,12 +239,14 @@ class _SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final signUpForm = Provider.of<LogInAndSignUpProvider>(context);
+    final connectionStatus = Provider.of<ConnectionStatusProvider>(context);
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       key: signUpForm.sigInUp,
       child: Column(
         children: [
           const Text(createAnAcount, style: TextStyle(fontSize: 25, color: negro, fontFamily: poppinsR),),
+          const WarningTextWidget(),
           Visibility(
             visible: signUpForm.errorForm,
             child: const Text('Correo ya registrado', style: TextStyle(color: Colors.red, fontSize: 16, fontFamily: poppinsL),)),
@@ -369,23 +381,29 @@ class _SignUp extends StatelessWidget {
               backgroundColor: verde2,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))
             ),
-            onPressed: signUpForm.isLoading ? null : () async {
+            onPressed: signUpForm.isLoading || connectionStatus.status != ConnectionStatus.online 
+            ? null 
+            : () async {
               FocusScope.of(context).unfocus();
+              signUpForm.isLoading = true;
               final authService = Provider.of<AuthServiceProvider>(context, listen: false);
-              if(!signUpForm.isValidsigInUp()){
-                return;
-              }else{
-                signUpForm.isLoading = true;
-              }
               final String? resp = await authService.signUp(signUpForm.email, signUpForm.password);
-              if(resp == null){
-                if(context.mounted){
-                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const EmailVerificationScreen(),), (route) => false);
-                }
-              }else{
+              if(!signUpForm.isValidsigInUp()){
                 signUpForm.isLoading = false;
-                signUpForm.errorForm = true;
+                return;
               }
+              if(resp != null){
+                signUpForm.errorForm = true;
+                signUpForm.isLoading = false;
+                return;
+              }
+              signUpForm.errorForm = false;
+              if(context.mounted) {
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const EmailVerificationScreen(),), (route) => false);
+                signUpForm.isLoading = false;
+                return;
+              }
+              return;
             },
             child: (signUpForm.isLoading) 
             ? const SizedBox(

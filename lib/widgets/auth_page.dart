@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/values/colors.dart';
+import 'package:miprocesoapp/utils/values/colors.dart';
 
 class AuthPage extends StatelessWidget {
   final List<Widget> children;

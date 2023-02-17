@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miprocesoapp/models/documents_process_model.dart';
-import 'package:miprocesoapp/values/texts.dart';
+import 'package:miprocesoapp/utils/values/texts.dart';
 import 'package:miprocesoapp/widgets/document_card.dart';
 import 'package:miprocesoapp/widgets/global_widgets/global_icon_button.dart';
 import 'package:miprocesoapp/widgets/global_widgets/global_sliver_app_bar.dart';

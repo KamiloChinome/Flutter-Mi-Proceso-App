@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/auth/auth_service.dart';
+import 'package:miprocesoapp/auth/firebase_auth_service.dart';
 import 'package:miprocesoapp/widgets/global_widgets/global_icon_button.dart';
-import 'package:miprocesoapp/share_preferences/user_preferences.dart';
-import 'package:miprocesoapp/theme/theme_provider.dart';
-import 'package:miprocesoapp/theme/themes.dart';
-import 'package:miprocesoapp/values/colors.dart';
-import 'package:miprocesoapp/values/texts.dart';
+import 'package:miprocesoapp/utils/share_preferences/user_preferences.dart';
+import 'package:miprocesoapp/utils/theme/theme_provider.dart';
+import 'package:miprocesoapp/utils/theme/themes.dart';
+import 'package:miprocesoapp/utils/values/colors.dart';
+import 'package:miprocesoapp/utils/values/texts.dart';
 import 'package:provider/provider.dart';
 
 class UserProfileScreen extends StatelessWidget {

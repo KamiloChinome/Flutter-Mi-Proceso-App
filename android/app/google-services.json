@@ -1,0 +1,231 @@
+{
+  "project_info": {
+    "project_number": "480764972806",
+    "firebase_url": "https://jiacp-legalapp-development.firebaseio.com",
+    "project_id": "jiacp-legalapp-development",
+    "storage_bucket": "jiacp-legalapp-development.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480764972806:android:eeb691eb7c0b91d9219887",
+        "android_client_info": {
+          "package_name": "co.com.legalapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480764972806-6apf537mo6j6q1bje2eqnagedg5ks5fr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.legalapp",
+            "certificate_hash": "987c871358e7bb1113d34112d69ebec6e2636776"
+          }
+        },
+        {
+          "client_id": "480764972806-7q1j7eguitf1vbestat5pamm0uoerilb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.legalapp",
+            "certificate_hash": "c7a2a39e31f9cedd298505b5fbd63727263df413"
+          }
+        },
+        {
+          "client_id": "480764972806-8ust7nlhfgmeph8pbdqdc2jr66ov62lu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.legalapp",
+            "certificate_hash": "22cf3c993c1f38c8efc877a13bc633df220c22e6"
+          }
+        },
+        {
+          "client_id": "480764972806-996saa28d9uek96ctmrovn759ggmd44f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.legalapp",
+            "certificate_hash": "60705ccfce09490df7ce35b46ab925020ab9d9b1"
+          }
+        },
+        {
+          "client_id": "480764972806-aicioe17tkgp5l2kh48og8pqnbgiocpa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.legalapp",
+            "certificate_hash": "8d120b15fad0fc989797f301607797678a0dc07b"
+          }
+        },
+        {
+          "client_id": "480764972806-dfhp9ghkav7qdp2r5hstnrunonmv6dbj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.legalapp",
+            "certificate_hash": "50101021ece4a50ad020031fdacb558093e239fd"
+          }
+        },
+        {
+          "client_id": "480764972806-fjqvbf0dj1da12j0qsoeapmnkhjmmere.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.legalapp",
+            "certificate_hash": "488d37bd6ab19850b9f9829574452ac65b8d0f3a"
+          }
+        },
+        {
+          "client_id": "480764972806-koojsacspvn59kb7lijguv4ekj89k0br.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.legalapp",
+            "certificate_hash": "7f0d81dc6ee0ee1b9217fe92bb984bc580a3ead5"
+          }
+        },
+        {
+          "client_id": "480764972806-oata62tmqqqcdnkpeakkvueeq6d88c37.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.legalapp",
+            "certificate_hash": "4efba786b4ed691b725222d2a8662ca4a8b5662b"
+          }
+        },
+        {
+          "client_id": "480764972806-obt9tdvtttbdd1qd2kh00djqel6n7f6n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.legalapp",
+            "certificate_hash": "fd373826d5f522efc3d0d0a30d18d38ac678ca3d"
+          }
+        },
+        {
+          "client_id": "480764972806-shmn7nccuqbq71tkeot0eh9e2q45ras5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.legalapp",
+            "certificate_hash": "4c6e6aa6b69ffb8d781dae96745bc78f12800124"
+          }
+        },
+        {
+          "client_id": "480764972806-u2i3as7mie5a7fbjljfc269iubagl7cp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.legalapp",
+            "certificate_hash": "5a22ef67f50870ea2982f9afefb36fbb39b3696b"
+          }
+        },
+        {
+          "client_id": "480764972806-uudmf3epv3qdudubl9ec5ti7iglar27f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.legalapp",
+            "certificate_hash": "83176e112e308011d60b53e4b58a4e65f062fb3e"
+          }
+        },
+        {
+          "client_id": "480764972806-osfuroj1urgk85q8knbs30ajqsbo41pf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJpbDljwbJ-xi534YIfEe49J7rD3VO6hw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480764972806-osfuroj1urgk85q8knbs30ajqsbo41pf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "480764972806-dk1p5v3fuaijll8k6fmbaaf7r4514vfo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.legalapp.com"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480764972806:android:dbbed841ae4d33ad219887",
+        "android_client_info": {
+          "package_name": "com.co.miprocesoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480764972806-osfuroj1urgk85q8knbs30ajqsbo41pf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJpbDljwbJ-xi534YIfEe49J7rD3VO6hw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480764972806-osfuroj1urgk85q8knbs30ajqsbo41pf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "480764972806-dk1p5v3fuaijll8k6fmbaaf7r4514vfo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.legalapp.com"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480764972806:android:c8675fb944a865fa219887",
+        "android_client_info": {
+          "package_name": "com.example.control_legal_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480764972806-jng29m63b85bnkm8snqqqqt2k5pcbr9c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.control_legal_app",
+            "certificate_hash": "22cf3c993c1f38c8efc877a13bc633df220c22e6"
+          }
+        },
+        {
+          "client_id": "480764972806-osfuroj1urgk85q8knbs30ajqsbo41pf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJpbDljwbJ-xi534YIfEe49J7rD3VO6hw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480764972806-osfuroj1urgk85q8knbs30ajqsbo41pf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "480764972806-dk1p5v3fuaijll8k6fmbaaf7r4514vfo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.legalapp.com"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

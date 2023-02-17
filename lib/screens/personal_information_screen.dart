@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/theme/theme_provider.dart';
-import 'package:miprocesoapp/theme/themes.dart';
-import 'package:miprocesoapp/values/colors.dart';
-import 'package:miprocesoapp/values/texts.dart';
+import 'package:miprocesoapp/utils/theme/theme_provider.dart';
+import 'package:miprocesoapp/utils/theme/themes.dart';
+import 'package:miprocesoapp/utils/values/colors.dart';
+import 'package:miprocesoapp/utils/values/texts.dart';
 import 'package:provider/provider.dart';
 
 class PersonalInformationScreen extends StatelessWidget {

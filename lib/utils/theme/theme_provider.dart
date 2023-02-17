@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/theme/themes.dart';
-import 'package:miprocesoapp/values/colors.dart';
+import 'package:miprocesoapp/utils/theme/themes.dart';
+import 'package:miprocesoapp/utils/values/colors.dart';
 
 class ThemeProvider extends ChangeNotifier{
   ThemeData currentTheme;

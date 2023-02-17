@@ -1,4 +1,4 @@
-import 'package:miprocesoapp/values/info.dart';
+import 'package:miprocesoapp/utils/values/info.dart';
 
 //FONTS
 const String poppinsB = 'PoppinsB';//fontsize 18
@@ -49,6 +49,10 @@ const String settings = 'Ajustes';
 const String suport = 'Ayuda y Soporte';
 const String inviteAFriend = 'Invitar a un amigo';
 const String logOutText = 'Cerrar sesión';
+
+//conectivity
+const String connectionOffT = 'No tienes coneccion a internet';
+
 
 
 

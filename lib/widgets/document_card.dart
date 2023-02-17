@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/values/colors.dart';
-import 'package:miprocesoapp/values/texts.dart';
+import 'package:miprocesoapp/utils/values/colors.dart';
+import 'package:miprocesoapp/utils/values/texts.dart';
 
 class DocumentCard extends StatelessWidget {
   final int index;

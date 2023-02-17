@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miprocesoapp/screens/process_screen.dart';
-import 'package:miprocesoapp/values/texts.dart';
+import 'package:miprocesoapp/utils/values/texts.dart';
 import 'package:miprocesoapp/widgets/process_card.dart';
 
 final citys = <String>[

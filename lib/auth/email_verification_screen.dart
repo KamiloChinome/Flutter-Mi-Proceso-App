@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miprocesoapp/widgets/global_widgets/global_outlined_button.dart';
-import 'package:miprocesoapp/values/colors.dart';
+import 'package:miprocesoapp/utils/values/colors.dart';
 import 'package:miprocesoapp/widgets/auth_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

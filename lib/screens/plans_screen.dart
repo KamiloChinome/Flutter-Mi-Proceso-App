@@ -1,11 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:miprocesoapp/providers/plan_view_provider.dart';
-import 'package:miprocesoapp/theme/theme_provider.dart';
-import 'package:miprocesoapp/theme/themes.dart';
-import 'package:miprocesoapp/values/colors.dart';
-import 'package:miprocesoapp/values/info.dart';
-import 'package:miprocesoapp/values/texts.dart';
+import 'package:miprocesoapp/utils/theme/theme_provider.dart';
+import 'package:miprocesoapp/utils/theme/themes.dart';
+import 'package:miprocesoapp/utils/values/colors.dart';
+import 'package:miprocesoapp/utils/values/info.dart';
+import 'package:miprocesoapp/utils/values/texts.dart';
 import 'package:miprocesoapp/widgets/global_widgets/global_outlined_button.dart';
 import 'package:provider/provider.dart';
 

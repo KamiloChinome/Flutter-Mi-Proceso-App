@@ -4,12 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:miprocesoapp/providers/button_provider.dart';
 import 'package:miprocesoapp/providers/icon_filter_provider.dart';
 import 'package:miprocesoapp/providers/page_view_provider.dart';
-import 'package:miprocesoapp/search/search_delegate.dart';
-import 'package:miprocesoapp/theme/theme_provider.dart';
-import 'package:miprocesoapp/theme/themes.dart';
-import 'package:miprocesoapp/values/colors.dart';
-import 'package:miprocesoapp/values/info.dart';
-import 'package:miprocesoapp/values/texts.dart';
+import 'package:miprocesoapp/utils/connection_status/warning_widget.dart';
+import 'package:miprocesoapp/utils/search/search_delegate.dart';
+import 'package:miprocesoapp/utils/theme/theme_provider.dart';
+import 'package:miprocesoapp/utils/theme/themes.dart';
+import 'package:miprocesoapp/utils/values/colors.dart';
+import 'package:miprocesoapp/utils/values/info.dart';
+import 'package:miprocesoapp/utils/values/texts.dart';
 import 'package:miprocesoapp/widgets/global_widgets/global_icon_button.dart';
 import 'package:miprocesoapp/widgets/material_button.dart';
 import 'package:miprocesoapp/widgets/process_card.dart';
@@ -286,7 +287,8 @@ class SliverHome extends StatelessWidget {
   final List<ProcessItem> infoList;
   const SliverHome({
     super.key,
-    required this.screeninfo, required this.infoList,
+    required this.screeninfo, 
+    required this.infoList,
   });
   @override
   Widget build(BuildContext context) {
@@ -311,7 +313,14 @@ class SliverHome extends StatelessWidget {
               )
             ],
           ),
-          SliverList(delegate: SliverChildListDelegate(infoList))
+          SliverList(delegate: SliverChildListDelegate(
+            [
+              const WarningTextWidget()
+            ]
+          )),
+          SliverList(delegate: SliverChildListDelegate(
+            infoList
+          ))
         ],
       ),
     );

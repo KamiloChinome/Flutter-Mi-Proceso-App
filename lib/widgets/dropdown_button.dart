@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/values/info.dart';
-import 'package:miprocesoapp/values/texts.dart';
+import 'package:miprocesoapp/utils/values/info.dart';
+import 'package:miprocesoapp/utils/values/texts.dart';
 
 class AddProcessDropDownButton extends StatelessWidget {
   final IconData icon;

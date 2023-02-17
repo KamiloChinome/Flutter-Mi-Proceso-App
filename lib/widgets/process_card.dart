@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/values/colors.dart';
-import 'package:miprocesoapp/values/texts.dart';
+import 'package:miprocesoapp/utils/values/colors.dart';
+import 'package:miprocesoapp/utils/values/texts.dart';
 class ProcessItem extends StatelessWidget {
   final String demanding;
   final String processId;
