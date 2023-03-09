@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:miprocesoapp/models/documents_proceedings.dart';
 import 'package:miprocesoapp/utils/values/texts.dart';
-import 'package:miprocesoapp/widgets/alarm_card.dart';
-import 'package:miprocesoapp/widgets/document_card.dart';
+import 'package:miprocesoapp/alarms/alarm_card.dart';
+import 'package:miprocesoapp/documents/document_card.dart';
 import 'package:miprocesoapp/widgets/global_widgets/global_icon_button.dart';
 import 'package:miprocesoapp/widgets/global_widgets/global_sliver_app_bar.dart';
 

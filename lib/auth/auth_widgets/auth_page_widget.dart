@@ -6,14 +6,15 @@ class AuthPage extends StatelessWidget {
   final Widget child;
   const AuthPage({
     super.key, 
-    required this.children, required this.child, 
-    });
+    required this.children, 
+    required this.child, 
+  });
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        _Marca1Box(child: child,),
+        _ColorBox(child: child,),
         _FormBox(children: children,),
         // _Marca1Box(child: child,),
       ],
@@ -39,9 +40,9 @@ class _FormBox extends StatelessWidget {
   }
 }
 
-class _Marca1Box extends StatelessWidget {
+class _ColorBox extends StatelessWidget {
   final Widget child;
-  const _Marca1Box({
+  const _ColorBox({
     Key? key, required this.child,
   }) : super(key: key);
 

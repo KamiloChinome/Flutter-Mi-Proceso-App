@@ -315,7 +315,7 @@ class SliverHome extends StatelessWidget {
           ),
           SliverList(delegate: SliverChildListDelegate(
             [
-              const WarningTextWidget()
+              const WarningWidget()
             ]
           )),
           SliverList(delegate: SliverChildListDelegate(
