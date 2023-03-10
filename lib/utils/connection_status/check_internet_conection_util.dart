@@ -22,10 +22,8 @@ enum ConnectionStatus {
   offline,
 }
 
-// A class to check the internet connection status
 class CheckInternetConnection {
 
-  // Create an instance of the connectivity plugin
   final Connectivity _connectivity = Connectivity();
 
   // Create a stream controller with initial value of ConnectionStatus.online
@@ -41,7 +39,6 @@ class CheckInternetConnection {
 
   // A method that returns a stream of ConnectionStatus
   Stream<ConnectionStatus> internetStatus() {
-    // If the subscription is null, listen for changes in connectivity status
     _connectionSubscription ??= _connectivity.onConnectivityChanged
     .listen((_) => _checkInternetConnection());
     // Return the stream of connection status
@@ -53,17 +50,13 @@ class CheckInternetConnection {
     try {
       // Wait for 3 seconds
       await Future.delayed(const Duration(seconds: 3));
-      // Look up the IP address of google.com
       final result = await InternetAddress.lookup('google.com');
-      // If the IP address is not empty, the internet connection is online
       if(result.isNotEmpty && result[0].rawAddress.isNotEmpty){
         _controller.sink.add(ConnectionStatus.online);
       }else{
-        // If the IP address is empty, the internet connection is offline
         _controller.sink.add(ConnectionStatus.offline);
       }
     } on SocketException catch (_) {
-      // If there's a SocketException, the internet connection is offline
       _controller.sink.add(ConnectionStatus.offline);
     }
   }
