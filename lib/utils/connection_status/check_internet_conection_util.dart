@@ -35,7 +35,6 @@ class CheckInternetConnection {
   }
 
   Stream<ConnectionStatus> internetStatus() {
-
     _connectionSubscription ??= _connectivity.onConnectivityChanged
     .listen((_) => _checkInternetConnection());
 
@@ -46,17 +45,13 @@ class CheckInternetConnection {
     try {
       // Wait for 3 seconds
       await Future.delayed(const Duration(seconds: 3));
-      // Look up the IP address of google.com
       final result = await InternetAddress.lookup('google.com');
-      // If the IP address is not empty, the internet connection is online
       if(result.isNotEmpty && result[0].rawAddress.isNotEmpty){
         _controller.sink.add(ConnectionStatus.online);
       }else{
-        // If the IP address is empty, the internet connection is offline
         _controller.sink.add(ConnectionStatus.offline);
       }
     } on SocketException catch (_) {
-      // If there's a SocketException, the internet connection is offline
       _controller.sink.add(ConnectionStatus.offline);
     }
   }
