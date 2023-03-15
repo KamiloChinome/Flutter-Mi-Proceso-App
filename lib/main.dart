@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Mi proceso',
-      initialRoute: 'LogInAndSignUp',
+      initialRoute: 'Home',
       routes: appRoutes,
       theme: Provider.of<ThemeProvider>(context).currentTheme,
     );

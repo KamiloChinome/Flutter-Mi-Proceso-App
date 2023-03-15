@@ -26,14 +26,14 @@ class BottomNavigationBarButton extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: (currentIndex != Provider.of<ButtonProvider>(context).selectedButton ) ? Colors.grey : color,
-            size: (currentIndex != Provider.of<ButtonProvider>(context).selectedButton ) ? 26 : 29,
+            color: (currentIndex != Provider.of<ChangeListProvider>(context).selectedButton ) ? Colors.grey : color,
+            size: (currentIndex != Provider.of<ChangeListProvider>(context).selectedButton ) ? 26 : 29,
           ),
           Text(
             text, 
             style: TextStyle(
               fontSize: 14, 
-              color: (currentIndex != Provider.of<ButtonProvider>(context).selectedButton ) ? Colors.grey : Theme.of(context).textTheme.titleLarge?.color,
+              color: (currentIndex != Provider.of<ChangeListProvider>(context).selectedButton ) ? Colors.grey : Theme.of(context).textTheme.titleLarge?.color,
             ),
           ) 
         ],

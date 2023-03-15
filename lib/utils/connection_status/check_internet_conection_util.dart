@@ -16,39 +16,32 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:rxdart/rxdart.dart';
 
-// Enum to represent the connection status
+
 enum ConnectionStatus {
   online,
   offline,
 }
-
-// A class to check the internet connection status
 class CheckInternetConnection {
 
-  // Create an instance of the connectivity plugin
   final Connectivity _connectivity = Connectivity();
 
-  // Create a stream controller with initial value of ConnectionStatus.online
+
   final _controller = BehaviorSubject.seeded(ConnectionStatus.online);
 
-  // Create a stream subscription to listen for connectivity changes
   StreamSubscription? _connectionSubscription;
 
-  // Constructor that calls _checkInternetConnection method to check the internet connection status
   CheckInternetConnection() {
     _checkInternetConnection();
   }
 
-  // A method that returns a stream of ConnectionStatus
   Stream<ConnectionStatus> internetStatus() {
-    // If the subscription is null, listen for changes in connectivity status
+
     _connectionSubscription ??= _connectivity.onConnectivityChanged
     .listen((_) => _checkInternetConnection());
-    // Return the stream of connection status
+
     return _controller.stream;
   }
 
-  // A private method to check the internet connection status
   Future<void> _checkInternetConnection() async {
     try {
       // Wait for 3 seconds

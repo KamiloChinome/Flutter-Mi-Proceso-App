@@ -20,7 +20,7 @@ class AddProcessScreen extends StatelessWidget {
     double sizeWidth = MediaQuery.of(context).size.width;
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ButtonProvider()),
+        ChangeNotifierProvider(create: (context) => ChangeListProvider()),
         ChangeNotifierProvider(create: (context) => AddProcessSwichProvider()),
       ],
       child: Scaffold(
@@ -179,7 +179,7 @@ class _AppBar extends StatelessWidget {
     return AppBar(
       leading:  GestureDetector(
         onTap: () {
-          Provider.of<ButtonProvider>(context, listen: false).selectedButton = 0;
+          Provider.of<ChangeListProvider>(context, listen: false).selectedButton = 0;
           Navigator.pop(context);
         },
         child: const Icon(Icons.arrow_back_ios_new_outlined)

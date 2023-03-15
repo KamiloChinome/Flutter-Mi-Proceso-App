@@ -37,7 +37,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_secure_storage: ^8.0.0
-  flutter_svg: ^1.1.6
+  flutter_svg: ^2.0.4
   font_awesome_flutter: ^10.3.0
   http: ^0.13.5
   lite_rolling_switch: ^1.0.0

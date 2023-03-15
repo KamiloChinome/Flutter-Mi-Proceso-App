@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:miprocesoapp/providers/button_provider.dart';
 import 'package:miprocesoapp/providers/icon_filter_provider.dart';
-import 'package:miprocesoapp/providers/page_view_provider.dart';
 import 'package:miprocesoapp/utils/connection_status/warning_widget.dart';
 import 'package:miprocesoapp/utils/search/search_delegate.dart';
 import 'package:miprocesoapp/utils/theme/theme_provider.dart';
@@ -21,29 +20,24 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final controller = PageController(initialPage: 0, keepPage: true);
     double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWidth = MediaQuery.of(context).size.width;
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ButtonProvider(),),
-        ChangeNotifierProvider(create: (context) => PageViewProvider(),),
+        ChangeNotifierProvider(create: (context) => ChangeListProvider(),),        
       ],
-      child: _Scaffold(controller: controller, sizeHeight: sizeHeight, sizeWidth: sizeWidth),
+      child: _Scaffold(sizeHeight: sizeHeight, sizeWidth: sizeWidth),
     );
   }
 }
 
-//SE EXTRAE EL WIDWET PARA UTILIZAR PROVIDER
 class _Scaffold extends StatelessWidget {
   const _Scaffold({
     Key? key,
-    required this.controller,
     required this.sizeHeight,
     required this.sizeWidth,
   }) : super(key: key);
 
-  final PageController controller;
   final double sizeHeight;
   final double sizeWidth;
 
@@ -52,7 +46,7 @@ class _Scaffold extends StatelessWidget {
     return Scaffold(
       body: Scaffold(
         drawer: const _Drawer(),
-        body: _Slides(controller: controller,),
+        body: const SliverHome(),
         floatingActionButton: FadeInDown(
         from: 30,
         child: SizedBox(
@@ -70,7 +64,7 @@ class _Scaffold extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: _BottomNavigationHome(sizeHeight: sizeHeight, sizeWidth: sizeWidth, controller: controller,),
+      bottomNavigationBar: _BottomNavigationHome(sizeHeight: sizeHeight, sizeWidth: sizeWidth,),
       ),
     );
   }
@@ -169,12 +163,15 @@ class _BottomNavigationHome extends StatelessWidget {
 
   final double sizeHeight;
   final double sizeWidth;
-  final PageController controller;
-  const _BottomNavigationHome({Key? key, required this.sizeHeight, required this.sizeWidth, required this.controller,}) : super(key: key);
+  const _BottomNavigationHome({
+    Key? key, 
+    required this.sizeHeight, 
+    required this.sizeWidth, 
+    }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    
+    final changeList = Provider.of<ChangeListProvider>(context, listen: false);
     return BottomAppBar(
       color: Theme.of(context).colorScheme.surface,
       elevation: 10,
@@ -193,9 +190,9 @@ class _BottomNavigationHome extends StatelessWidget {
                 color: azul2,
                 currentIndex: 0,
                 onPressed: () {
-                  Provider.of<ButtonProvider>(context, listen: false).selectedButton = 0;
-                  Provider.of<PageViewProvider>(context, listen: false).page = 0;
-                  controller.jumpToPage(0);
+                  changeList.selectedButton = 0;
+                  changeList.list = allItems;
+                  changeList.text = 'Todos los  procesos';
                 },
                 text: allProcess, 
               ),
@@ -205,9 +202,9 @@ class _BottomNavigationHome extends StatelessWidget {
                 color: verde,
                 currentIndex: 1,
                 onPressed: () {
-                  Provider.of<ButtonProvider>(context, listen: false).selectedButton = 1;
-                  Provider.of<PageViewProvider>(context, listen: false).page = 1;
-                  controller.jumpToPage(1);
+                  changeList.selectedButton = 1;
+                  changeList.list = checkItems;
+                  changeList.text = 'Sin cambios';
                 },
                 text: reviewed,
               ),
@@ -217,9 +214,9 @@ class _BottomNavigationHome extends StatelessWidget {
                 color: Colors.red,
                 currentIndex: 2,
                 onPressed: () {
-                  Provider.of<ButtonProvider>(context, listen: false).selectedButton = 2;
-                  Provider.of<PageViewProvider>(context, listen: false).page = 2;
-                  controller.jumpToPage(2);
+                  changeList.selectedButton = 2;
+                  changeList.list = notCheckItems;
+                  changeList.text = 'No revisados';
                 },
                 text: noChecked,
               ),
@@ -229,10 +226,9 @@ class _BottomNavigationHome extends StatelessWidget {
                 color: opcion1,
                 currentIndex: 3,
                 onPressed: () {
-                  Provider.of<ButtonProvider>(context, listen: false).selectedButton = 3;
-                  Provider.of<PageViewProvider>(context, listen: false).page = 3;
-                  // controller.animateToPage(4, duration: const Duration(milliseconds: 550), curve: Curves.easeInQuart);
-                  controller.jumpToPage(3);
+                  changeList.selectedButton = 3;
+                  changeList.list = updateItems;
+                  changeList.text = 'Nuevas actuaciones';
                 },
                 text: news,
               ),
@@ -245,54 +241,11 @@ class _BottomNavigationHome extends StatelessWidget {
   }
 }
 
-class _Slides extends StatelessWidget {
-  final PageController controller;
-  const _Slides({ required this.controller});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      child: PageView(
-        controller: controller,
-        onPageChanged: (i) {
-          Provider.of<ButtonProvider>(context, listen: false).selectedButton = i;
-          i=2;
-        },
-        physics:  const BouncingScrollPhysics(),
-        children: [
-          SliverHome(
-            screeninfo: allProcess,
-            infoList: allItems,
-          ),
-          SliverHome(
-            screeninfo: reviewed,
-            infoList: checkItems,
-          ),
-          SliverHome(
-            screeninfo: noChecked,
-            infoList: allItems,
-          ),
-          SliverHome(
-            screeninfo: updated,
-            infoList: updateItems,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class SliverHome extends StatelessWidget {
-  final String screeninfo;
-  final List<ProcessItem> infoList;
-  const SliverHome({
-    super.key,
-    required this.screeninfo, 
-    required this.infoList,
-  });
+  const SliverHome({super.key,});
   @override
   Widget build(BuildContext context) {
-    //quita el teclado
+    final list = Provider.of<ChangeListProvider>(context, listen: true);    
     FocusScope.of(context).unfocus();
     return ChangeNotifierProvider(
       create: (context) => IconFilterprovider(),
@@ -301,7 +254,7 @@ class SliverHome extends StatelessWidget {
         slivers: <Widget>[
           GlobalSliverAppbar(
             screeninfo: userName, 
-            titleText: screeninfo, 
+            titleText: list.text, 
             iconLeading: Icons.menu,
             leadingOnPressed: () => Scaffold.of(context).openDrawer(),
             actions: [
@@ -319,7 +272,7 @@ class SliverHome extends StatelessWidget {
             ]
           )),
           SliverList(delegate: SliverChildListDelegate(
-            infoList
+            list.list
           ))
         ],
       ),
