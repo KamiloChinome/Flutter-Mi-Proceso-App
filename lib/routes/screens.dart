@@ -1,0 +1,11 @@
+export 'package:miprocesoapp/acount/acount_screen.dart';
+export 'package:miprocesoapp/features/add_process/add_process_screen.dart';
+export 'package:miprocesoapp/features/alarms/alarm_screen.dart';
+export 'package:miprocesoapp/features/processes/processes_home_screen.dart';
+export 'package:miprocesoapp/acount/personal_information_screen.dart';
+export 'package:miprocesoapp/features/plans/plans_screen.dart';
+export 'package:miprocesoapp/features/proceedings_information/proceedings_information_screen.dart';
+export 'package:miprocesoapp/features/documents/documents_screen.dart';
+export 'package:miprocesoapp/features/process_information/process_information_screen.dart';
+export 'package:miprocesoapp/features/process/process_screen.dart';
+export 'package:miprocesoapp/acount/settings_screen.dart';

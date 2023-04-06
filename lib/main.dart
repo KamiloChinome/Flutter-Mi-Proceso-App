@@ -5,7 +5,7 @@ import 'package:miprocesoapp/utils/connection_status/conection_status_provider.d
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:miprocesoapp/auth/firebase_auth_service.dart';
+import 'package:miprocesoapp/services/auth/firebase_auth_service.dart';
 import 'package:miprocesoapp/utils/share_preferences/user_preferences.dart';
 import 'package:miprocesoapp/utils/theme/theme_provider.dart';
 import 'package:provider/provider.dart';

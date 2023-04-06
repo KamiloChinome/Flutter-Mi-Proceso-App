@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../auth/check_authh_screen.dart';
-import '../auth/email_verification_screen.dart';
-import '../auth/log_in_and_create_acount_screen.dart';
-import '../screens/screens.dart';
+import '../services/auth/check_authh_screen.dart';
+import '../services/auth/email_verification_screen.dart';
+import '../services/auth/log_in_and_create_acount_screen.dart';
+import 'screens.dart';
 
 final Map<String, Widget Function(BuildContext)> appRoutes = {
   'AddProcessScreen':(context) => const AddProcessScreen(),

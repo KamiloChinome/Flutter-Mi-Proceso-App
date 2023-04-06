@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:miprocesoapp/screens/process_screen.dart';
+import 'package:miprocesoapp/features/process/process_screen.dart';
 import 'package:miprocesoapp/utils/values/texts.dart';
-import 'package:miprocesoapp/widgets/process_card.dart';
+import 'package:miprocesoapp/features/processes/process_card.dart';
 
 final citys = <String>[
   'APARTADO','ARAUCA',
@@ -28,34 +28,34 @@ final citys = <String>[
 ];
 
 final allItems = [
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
 ];
 final checkItems = [
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
 ];
 final notCheckItems = [
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
 ];
 final updateItems = [
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
-  const ProcessItem(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
+  const ProcessItemWidget(defendant: defendant,demanding: demanding,processId: processId,processUbication: processUbication,),
 ];
 
 const List<Widget> nameAllServices = <Widget>[
