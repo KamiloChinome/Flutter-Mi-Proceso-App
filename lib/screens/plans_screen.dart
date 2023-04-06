@@ -118,7 +118,6 @@ class PageViewWidgetState extends State<PageViewWidget> {
           setState(() {
             Provider.of<PlansIndexProvider>(context, listen: false).currentPage = pageController.page!;
             pageOffset = pageController.page;
-            
           }
         );
       }
