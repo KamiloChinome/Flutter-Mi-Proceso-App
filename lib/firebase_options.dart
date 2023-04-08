@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,20 +49,9 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBCQn0kst0KOaT8hJgM2k-zCAUV3jmsjZY',
-    appId: '1:480764972806:web:4ffdfd4197e679be219887',
-    messagingSenderId: '480764972806',
-    projectId: 'jiacp-legalapp-development',
-    authDomain: 'jiacp-legalapp-development.firebaseapp.com',
-    databaseURL: 'https://jiacp-legalapp-development.firebaseio.com',
-    storageBucket: 'jiacp-legalapp-development.appspot.com',
-    measurementId: 'G-JJKL4QFESH',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBJpbDljwbJ-xi534YIfEe49J7rD3VO6hw',
-    appId: '1:480764972806:android:dbbed841ae4d33ad219887',
+    appId: '1:480764972806:android:75cc1142de7182d6219887',
     messagingSenderId: '480764972806',
     projectId: 'jiacp-legalapp-development',
     databaseURL: 'https://jiacp-legalapp-development.firebaseio.com',
@@ -65,19 +60,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAeJIKbirHJSgzO_U942QVebsE38Vx3das',
-    appId: '1:480764972806:ios:c5dcf08a67202b57219887',
-    messagingSenderId: '480764972806',
-    projectId: 'jiacp-legalapp-development',
-    databaseURL: 'https://jiacp-legalapp-development.firebaseio.com',
-    storageBucket: 'jiacp-legalapp-development.appspot.com',
-    androidClientId: '480764972806-6apf537mo6j6q1bje2eqnagedg5ks5fr.apps.googleusercontent.com',
-    iosClientId: '480764972806-ihc9k3c292b0onhaalffsq9iqlfg917r.apps.googleusercontent.com',
-    iosBundleId: 'com.example.miprocesoapp',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAeJIKbirHJSgzO_U942QVebsE38Vx3das',
-    appId: '1:480764972806:ios:c5dcf08a67202b57219887',
+    appId: '1:480764972806:ios:6de1ad1dc5770d79219887',
     messagingSenderId: '480764972806',
     projectId: 'jiacp-legalapp-development',
     databaseURL: 'https://jiacp-legalapp-development.firebaseio.com',
